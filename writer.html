@@ -16,19 +16,27 @@
       --display: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
     *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--fg);
+      font-family:var(--sans);
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
     a{color:var(--fg);text-decoration:none}
     a:hover{opacity:.9}
     :focus-visible{ outline: 2px solid rgba(2,53,72,.95); outline-offset: 3px; border-radius: 12px; }
 
     .wrap{max-width:var(--max);margin:0 auto;padding:42px 22px 90px;}
 
-    /* Sticky header BUT does not block clicks */
+    /* Sticky header that never blocks taps */
     header{
-      position:sticky; top:0;
-      background: rgba(0,0,0,.86);
+      position:sticky;
+      top:0;
+      z-index: 50;
+      background: rgba(0,0,0,.88);
       backdrop-filter: blur(10px);
-      z-index: 10;
       border-bottom: 1px solid var(--hair2);
       padding: 14px 0 14px;
     }
@@ -46,12 +54,17 @@
       display:flex; gap:14px; flex-wrap:wrap; align-items:center;
     }
     .miniNav a{
-      font-size:12px; letter-spacing:.24em; text-transform:uppercase;
+      font-size:12px;
+      letter-spacing:.24em;
+      text-transform:uppercase;
       color: rgba(255,255,255,.68);
       border-bottom:1px solid transparent;
       padding-bottom:6px;
     }
-    .miniNav a:hover{ color: rgba(255,255,255,.92); border-bottom-color: rgba(2,53,72,.85); }
+    .miniNav a:hover{
+      color: rgba(255,255,255,.92);
+      border-bottom-color: rgba(2,53,72,.85);
+    }
 
     .swipeHint{
       font-size: 11px;
@@ -88,11 +101,14 @@
       min-height: 52px;
       -webkit-tap-highlight-color: transparent;
       transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
-      position:relative;
-      z-index: 20; /* ensures above sticky background */
+      cursor:pointer;
     }
-    .pill:hover{ transform: translateY(-1px); border-color: rgba(2,53,72,.98); background: rgba(2,53,72,.16); box-shadow: 0 0 0 6px rgba(2,53,72,.10); }
-
+    .pill:hover{
+      transform: translateY(-1px);
+      border-color: rgba(2,53,72,.98);
+      background: rgba(2,53,72,.16);
+      box-shadow: 0 0 0 6px rgba(2,53,72,.10);
+    }
     .pill.active{
       border-color: rgba(2,53,72,.98);
       background: rgba(2,53,72,.18);
@@ -118,9 +134,28 @@
     }
 
     .section{padding:46px 0;border-bottom:1px solid var(--hair2);}
-    .head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px;}
-    .h2{margin:0;font-size:13px;letter-spacing:.30em;text-transform:uppercase;color:rgba(255,255,255,.86);}
-    .hint{margin:0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.52);}
+    .head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+    .h2{
+      margin:0;
+      font-size:13px;
+      letter-spacing:.30em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.86);
+    }
+    .hint{
+      margin:0;
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.52);
+    }
 
     .statement{
       margin:0;
@@ -132,7 +167,6 @@
       padding-top: 18px;
     }
 
-    /* One picture per page */
     .heroMedia{
       margin-top: 22px;
       border: 1px solid rgba(255,255,255,.10);
@@ -233,25 +267,38 @@
   </div>
 
   <script>
-    // Swipe navigation (works even if buttons do)
+    // Swipe navigation (tuned to NOT feel finicky)
     const order = ["writer.html","producer.html","intimacy.html","mystic.html","healer.html","rebel.html"];
     const current = "writer.html";
     const idx = order.indexOf(current);
 
-    let sx=null, sy=null;
+    let sx=null, sy=null, allowSwipe=true, startedAt=0;
+
     window.addEventListener("touchstart", (e)=>{
-      const t=e.touches[0]; sx=t.clientX; sy=t.clientY;
+      const t=e.touches[0];
+      sx=t.clientX; sy=t.clientY;
+      startedAt = Date.now();
+
+      // If the gesture starts on the header/pager/nav, never swipe
+      const inHeader = e.target && e.target.closest && e.target.closest("header");
+      allowSwipe = !inHeader;
     }, {passive:true});
 
     window.addEventListener("touchend", (e)=>{
+      if(!allowSwipe) { sx=null; sy=null; return; }
       if(sx===null) return;
+
       const t=e.changedTouches[0];
       const dx=t.clientX - sx;
       const dy=t.clientY - sy;
       sx=null; sy=null;
 
-      if(Math.abs(dx) < 60) return;
-      if(Math.abs(dy) > 90) return;
+      // quick accidental flings ignored
+      if(Date.now() - startedAt < 40) return;
+
+      // Must be clearly horizontal
+      if(Math.abs(dx) < 90) return;          // distance threshold
+      if(Math.abs(dx) < Math.abs(dy) * 2) return; // horizontal dominance (2x)
 
       if(dx < 0 && idx < order.length - 1) window.location.href = order[idx+1];
       if(dx > 0 && idx > 0) window.location.href = order[idx-1];
