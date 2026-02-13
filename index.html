@@ -3,28 +3,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Malia Taylor — Producer • Writer • Intimacy Coordinator</title>
-  <meta name="description" content="Malia Taylor — Producer, Writer, Intimacy Coordinator." />
+  <title>Malia Taylor</title>
   <meta name="theme-color" content="#000000" />
-
   <style>
     :root{
-      --bg:#000;
-      --fg:#fff;
-      --muted: rgba(255,255,255,.72);
-      --hair: rgba(255,255,255,.14);
-      --hair2: rgba(255,255,255,.08);
+      --bg:#000; --fg:#fff;
+      --muted: rgba(255,255,255,.70);
+      --hair: rgba(255,255,255,.12);
+      --hair2: rgba(255,255,255,.07);
       --accent:#023548;
-
       --max: 1100px;
       --r: 18px;
       --pill: 999px;
-
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      --serif: ui-serif, Georgia, "Times New Roman", Times, serif;
       --display: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
-
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -35,21 +28,20 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
-
     a{color:var(--fg); text-decoration:none}
     a:hover{opacity:.86}
 
-    /* Subtle grain */
+    /* subtle grain */
     .grain:before{
       content:"";
-      position:fixed;
-      inset:0;
+      position:fixed; inset:0;
       pointer-events:none;
-      background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
       mix-blend-mode: overlay;
       opacity:.06;
     }
+
+    .wrap{max-width:var(--max); margin:0 auto; padding: 0 22px 90px;}
 
     /* HERO */
     .hero{
@@ -57,27 +49,20 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      padding: 56px 22px;
+      padding: 64px 0;
       position:relative;
       overflow:hidden;
+      border-bottom: 1px solid var(--hair2);
     }
-
-    /* Accent glow line */
     .hero:after{
       content:"";
-      position:absolute;
-      left:50%;
-      top:0;
-      width: 900px;
-      height: 900px;
+      position:absolute; left:50%; top:-120px;
+      width: 980px; height: 980px;
       transform: translateX(-50%);
-      background:
-        radial-gradient(circle at 50% 25%, rgba(2,53,72,.26), transparent 58%);
-      filter: blur(2px);
-      opacity: .9;
+      background: radial-gradient(circle at 50% 35%, rgba(2,53,72,.30), transparent 60%);
       pointer-events:none;
+      opacity:.95;
     }
-
     .heroInner{
       width:100%;
       max-width: var(--max);
@@ -91,186 +76,116 @@
       font-weight: 600;
       letter-spacing: .06em;
       text-transform: uppercase;
-      font-size: clamp(44px, 7vw, 86px);
+      font-size: clamp(48px, 7vw, 92px);
       line-height: 1.02;
+      text-shadow: 0 0 20px rgba(2,53,72,.18);
     }
 
     .roles{
-      margin-top: 14px;
+      margin-top: 16px;
       display:flex;
       flex-wrap:wrap;
       gap:12px;
       align-items:center;
-      font-size: 14px;
-      letter-spacing:.18em;
+      font-size: 13px;
+      letter-spacing:.26em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.90);
+      color: rgba(255,255,255,.92);
     }
-
-    .roles .sep{
+    .sep{
       width:6px;height:6px;border-radius:50%;
       background: var(--accent);
       box-shadow: 0 0 18px rgba(2,53,72,.65);
-      opacity: .95;
     }
 
-    .heroActions{
-      margin-top: 32px;
+    .subnav{
+      margin-top: 30px;
       display:flex;
       flex-wrap:wrap;
       gap:10px;
       align-items:center;
     }
 
-    .pillBtn{
-      border: 1px solid var(--hair);
-      background: rgba(255,255,255,.02);
+    .pill{
+      border: 1px solid rgba(2,53,72,.70);
+      background: rgba(2,53,72,.10);
       border-radius: var(--pill);
       padding: 12px 14px;
       font-size: 12px;
-      letter-spacing:.20em;
+      letter-spacing:.22em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.90);
-      cursor:pointer;
+      color: rgba(255,255,255,.92);
       transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
-      user-select:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width: 120px;
     }
-    .pillBtn:hover{ transform: translateY(-1px); }
-    .pillBtn[aria-pressed="true"]{
-      border-color: rgba(2,53,72,.9);
-      box-shadow: 0 0 0 6px rgba(2,53,72,.12);
-      background: rgba(2,53,72,.10);
+    .pill:hover{
+      transform: translateY(-1px);
+      border-color: rgba(2,53,72,.95);
+      background: rgba(2,53,72,.16);
+      box-shadow: 0 0 0 6px rgba(2,53,72,.10);
     }
 
-    .nav{
-      margin-top: 28px;
+    .linksRow{
+      margin-top: 18px;
       display:flex;
+      gap:18px;
       flex-wrap:wrap;
-      gap: 18px;
     }
-    .nav a{
-      color: rgba(255,255,255,.70);
+    .link{
       font-size: 12px;
-      letter-spacing: .24em;
+      letter-spacing:.24em;
       text-transform: uppercase;
+      color: rgba(255,255,255,.68);
       border-bottom: 1px solid transparent;
       padding-bottom: 6px;
     }
-    .nav a:hover{
-      color: rgba(255,255,255,.92);
-      border-bottom-color: rgba(2,53,72,.8);
-    }
+    .link:hover{ color: rgba(255,255,255,.92); border-bottom-color: rgba(2,53,72,.85); }
 
-    /* MAIN */
-    main{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 22px 90px;
+    /* SECTIONS */
+    .section{ padding: 64px 0; border-bottom: 1px solid var(--hair2); }
+    .head{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:18px;
+      margin-bottom: 18px;
     }
-
-    .section{
-      border-top: 1px solid var(--hair2);
-      padding: 64px 0;
-    }
-
-    .sectionHead{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap: 18px;
-      margin-bottom: 20px;
-    }
-
     .h2{
       margin:0;
-      font-size: 14px;
-      letter-spacing: .26em;
+      font-size: 13px;
+      letter-spacing:.28em;
       text-transform: uppercase;
       color: rgba(255,255,255,.86);
     }
-
     .hint{
       margin:0;
-      color: rgba(255,255,255,.55);
       font-size: 12px;
       letter-spacing:.18em;
       text-transform: uppercase;
-    }
-
-    /* Big cards */
-    .cards{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-    @media (max-width: 880px){
-      .cards{ grid-template-columns: 1fr; }
+      color: rgba(255,255,255,.50);
     }
 
     .card{
       border: 1px solid var(--hair2);
       border-radius: var(--r);
-      padding: 18px;
+      padding: 20px;
       background: rgba(255,255,255,.02);
-      position:relative;
-      overflow:hidden;
-      min-height: 130px;
     }
-
-    /* Accent corner */
-    .card:before{
-      content:"";
-      position:absolute;
-      right:-40px;
-      top:-40px;
-      width: 140px;
-      height: 140px;
-      background: radial-gradient(circle at 30% 30%, rgba(2,53,72,.55), transparent 60%);
-      opacity:.9;
-      pointer-events:none;
-    }
-
-    .cardTitle{
+    .copy{
       margin:0;
-      font-size: 18px;
-      letter-spacing: .04em;
-      font-weight: 600;
+      color: rgba(255,255,255,.82);
+      line-height: 1.7;
+      font-size: 15px;
+      max-width: 72ch;
     }
 
-    .cardMeta{
-      margin-top: 10px;
-      color: rgba(255,255,255,.70);
-      line-height: 1.6;
-      font-size: 14px;
-      max-width: 70ch;
-    }
-
-    .tagRow{
+    .contactBtn{
       margin-top: 14px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-
-    .tag{
-      border: 1px solid rgba(2,53,72,.65);
-      color: rgba(255,255,255,.88);
-      border-radius: var(--pill);
-      padding: 8px 10px;
-      font-size: 11px;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      background: rgba(2,53,72,.10);
-    }
-
-    /* Contact buttons */
-    .btn{
       display:inline-flex;
       align-items:center;
-      gap:10px;
       border-radius: 14px;
-      border: 1px solid rgba(2,53,72,.75);
-      background: rgba(2,53,72,.12);
+      border: 1px solid rgba(2,53,72,.85);
+      background: rgba(2,53,72,.14);
       padding: 12px 14px;
       font-size: 12px;
       letter-spacing:.22em;
@@ -278,176 +193,88 @@
       color: rgba(255,255,255,.92);
       transition: transform .18s ease, background .18s ease, border-color .18s ease;
     }
-    .btn:hover{
+    .contactBtn:hover{
       transform: translateY(-1px);
+      border-color: rgba(2,53,72,.98);
       background: rgba(2,53,72,.18);
-      border-color: rgba(2,53,72,.95);
     }
 
     footer{
-      border-top: 1px solid var(--hair2);
-      padding: 22px 0 0;
-      margin-top: 32px;
-      color: rgba(255,255,255,.55);
+      padding-top: 22px;
+      color: rgba(255,255,255,.50);
       font-size: 12px;
       letter-spacing:.20em;
       text-transform: uppercase;
-      display:flex;
-      justify-content:space-between;
-      gap: 12px;
-      flex-wrap:wrap;
+      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
     }
 
-    /* Reveal */
-    .reveal{ opacity:0; transform: translateY(10px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.is-visible{ opacity:1; transform: translateY(0); }
-
-    /* Focus */
-    :focus-visible{ outline: 2px solid rgba(2,53,72,.9); outline-offset: 3px; border-radius: 10px; }
+    /* reveal */
+    .reveal{opacity:0; transform: translateY(10px); transition: opacity .7s ease, transform .7s ease;}
+    .reveal.is-visible{opacity:1; transform: translateY(0);}
+    :focus-visible{ outline: 2px solid rgba(2,53,72,.95); outline-offset: 3px; border-radius: 10px; }
   </style>
 </head>
 
 <body class="grain">
-  <!-- HERO / HOME SCREEN -->
   <section class="hero">
-    <div class="heroInner reveal">
+    <div class="wrap heroInner reveal">
       <h1 class="title">MALIA TAYLOR</h1>
 
       <div class="roles" aria-label="Roles">
-        <span>Producer</span><span class="sep"></span>
         <span>Writer</span><span class="sep"></span>
+        <span>Producer</span><span class="sep"></span>
         <span>Intimacy Coordinator</span>
       </div>
 
-      <div class="heroActions" role="group" aria-label="Role filter">
-        <button class="pillBtn" data-role="all" aria-pressed="true">All</button>
-        <button class="pillBtn" data-role="producer" aria-pressed="false">Producer</button>
-        <button class="pillBtn" data-role="writer" aria-pressed="false">Writer</button>
-        <button class="pillBtn" data-role="intimacy" aria-pressed="false">Intimacy</button>
+      <!-- click-to-pages -->
+      <div class="subnav" aria-label="Identity pages">
+        <a class="pill" href="mystic.html">Mystic</a>
+        <a class="pill" href="healer.html">Healer</a>
+        <a class="pill" href="rebel.html">Rebel</a>
       </div>
 
-      <nav class="nav" aria-label="Jump links">
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="#media">Media</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <div class="linksRow" aria-label="Navigation">
+        <a class="link" href="#bio">Bio</a>
+        <a class="link" href="#contact">Contact</a>
+        <a class="link" href="work.html">Work</a>
+      </div>
     </div>
   </section>
 
-  <main>
-    <!-- PROJECTS -->
-    <section id="projects" class="section reveal">
-      <div class="sectionHead">
-        <h2 class="h2">Projects</h2>
-        <p class="hint">filtered by role</p>
-      </div>
-
-      <div class="cards">
-        <!-- Replace placeholders anytime. Add roles in data-roles -->
-        <article class="card" data-roles="producer">
-          <h3 class="cardTitle">Project Title</h3>
-          <div class="cardMeta">Feature / Short / Series • Year • One clean line (optional).</div>
-          <div class="tagRow"><span class="tag">Producer</span></div>
-        </article>
-
-        <article class="card" data-roles="writer">
-          <h3 class="cardTitle">Project Title</h3>
-          <div class="cardMeta">Feature / Short / Series • Year • One clean line (optional).</div>
-          <div class="tagRow"><span class="tag">Writer</span></div>
-        </article>
-
-        <article class="card" data-roles="intimacy">
-          <h3 class="cardTitle">Project Title</h3>
-          <div class="cardMeta">Feature / Short / Series • Year • One clean line (optional).</div>
-          <div class="tagRow"><span class="tag">Intimacy</span></div>
-        </article>
-
-        <article class="card" data-roles="producer writer">
-          <h3 class="cardTitle">Project Title</h3>
-          <div class="cardMeta">Feature / Short / Series • Year • One clean line (optional).</div>
-          <div class="tagRow"><span class="tag">Producer</span><span class="tag">Writer</span></div>
-        </article>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="section reveal">
-      <div class="sectionHead">
-        <h2 class="h2">About</h2>
+  <div class="wrap">
+    <section id="bio" class="section reveal">
+      <div class="head">
+        <h2 class="h2">Bio</h2>
         <p class="hint">minimal</p>
       </div>
-
-      <div class="cards">
-        <article class="card" data-role-block="all">
-          <h3 class="cardTitle">Bio</h3>
-          <div class="cardMeta">One short paragraph. Clean, confident. (Paste yours here and I’ll polish it.)</div>
-          <div class="tagRow"><span class="tag">Mystic</span><span class="tag">Healer</span><span class="tag">Rebel</span></div>
-        </article>
-
-        <article class="card" data-role-block="producer">
-          <h3 class="cardTitle">Producer</h3>
-          <div class="cardMeta">One tight paragraph about how she produces. (Placeholder.)</div>
-          <div class="tagRow"><span class="tag">Producer</span></div>
-        </article>
-
-        <article class="card" data-role-block="writer">
-          <h3 class="cardTitle">Writer</h3>
-          <div class="cardMeta">One tight paragraph about her voice + themes. (Placeholder.)</div>
-          <div class="tagRow"><span class="tag">Writer</span></div>
-        </article>
-
-        <article class="card" data-role-block="intimacy">
-          <h3 class="cardTitle">Intimacy Coordinator</h3>
-          <div class="cardMeta">One tight paragraph about process + ethics. (Placeholder.)</div>
-          <div class="tagRow"><span class="tag">Intimacy</span></div>
-        </article>
+      <div class="card">
+        <p class="copy">
+          <!-- Paste the real bio here (short, 3–5 lines). -->
+          Malia Taylor is a producer, writer, and intimacy coordinator creating work with precision, elegance, and emotional truth.
+        </p>
       </div>
     </section>
 
-    <!-- MEDIA -->
-    <section id="media" class="section reveal">
-      <div class="sectionHead">
-        <h2 class="h2">Media</h2>
-        <p class="hint">links later</p>
-      </div>
-
-      <div class="cards">
-        <article class="card">
-          <h3 class="cardTitle">Press / Interviews</h3>
-          <div class="cardMeta">Add links when ready. Keep this section curated.</div>
-          <div class="tagRow"><span class="tag">Media</span></div>
-        </article>
-
-        <article class="card">
-          <h3 class="cardTitle">Reel / Portfolio</h3>
-          <div class="cardMeta">Add Vimeo/YouTube links later.</div>
-          <div class="tagRow"><span class="tag">Reel</span></div>
-        </article>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section reveal">
-      <div class="sectionHead">
+    <section id="contact" class="section reveal" style="border-bottom:none;">
+      <div class="head">
         <h2 class="h2">Contact</h2>
         <p class="hint">direct</p>
       </div>
+      <div class="card">
+        <p class="copy">For producing, writing, intimacy coordination, and aligned collaborations:</p>
+        <a class="contactBtn" href="mailto:maliactaylor@gmail.com">maliactaylor@gmail.com</a>
+      </div>
 
-      <a class="btn" href="mailto:maliactaylor@gmail.com">Email • maliactaylor@gmail.com</a>
-
-      <footer>
+      <footer class="reveal">
         <div>© <span id="y"></span> Malia Taylor</div>
-        <div style="color:rgba(255,255,255,.66)">#023548</div>
+        <div style="color:rgba(255,255,255,.62)">#023548</div>
       </footer>
     </section>
-  </main>
+  </div>
 
   <script>
-    // Year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Reveal
     const revealEls = Array.from(document.querySelectorAll('.reveal'));
     const io = new IntersectionObserver((entries) => {
       entries.forEach(ent => {
@@ -458,36 +285,6 @@
       });
     }, { threshold: 0.12 });
     revealEls.forEach(el => io.observe(el));
-
-    // Role filtering
-    const pills = Array.from(document.querySelectorAll('.pillBtn'));
-    const cards = Array.from(document.querySelectorAll('[data-roles]'));
-    const roleBlocks = Array.from(document.querySelectorAll('[data-role-block]'));
-
-    function setRole(role){
-      pills.forEach(p => p.setAttribute('aria-pressed', String(p.dataset.role === role)));
-
-      // Projects filter
-      cards.forEach(c => {
-        const roles = (c.getAttribute('data-roles')||'').split(/\s+/).filter(Boolean);
-        c.style.display = (role === 'all' || roles.includes(role)) ? 'block' : 'none';
-      });
-
-      // About filter (show only relevant role card + always show Bio)
-      roleBlocks.forEach(b => {
-        const r = b.getAttribute('data-role-block');
-        const show = (r === 'all') || (role !== 'all' && r === role) || (role === 'all' && r === 'all');
-        b.style.display = show ? 'block' : 'none';
-      });
-
-      try{ localStorage.setItem('mt_role', role); }catch(e){}
-    }
-
-    pills.forEach(btn => btn.addEventListener('click', () => setRole(btn.dataset.role)));
-
-    let stored = 'all';
-    try{ stored = localStorage.getItem('mt_role') || 'all'; }catch(e){}
-    setRole(stored);
   </script>
 </body>
 </html>
