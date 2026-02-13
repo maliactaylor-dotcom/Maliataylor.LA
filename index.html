@@ -86,7 +86,7 @@
       text-shadow: 0 0 28px rgba(2,53,72,.22);
     }
 
-    /* Button rows optimized for iPhone */
+    /* Rows */
     .row{
       margin-top: 22px;
       display:flex;
@@ -95,6 +95,30 @@
       align-items:center;
     }
 
+    /* Role links (subtitle-style, clickable) */
+    .roleRow{
+      margin-top: 14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 14px;
+      align-items:baseline;
+    }
+    .roleLink{
+      font-size: 12px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.78);
+      padding: 8px 0;
+      border-bottom: 1px solid transparent;
+      transition: color .18s ease, border-color .18s ease, transform .18s ease;
+    }
+    .roleLink:hover{
+      color: rgba(255,255,255,.95);
+      border-bottom-color: rgba(2,53,72,.85);
+      transform: translateY(-1px);
+    }
+
+    /* Keep existing button look for Mystic/Healer/Rebel + Bio/Contact */
     .btn{
       border: 1px solid rgba(2,53,72,.85);
       background: rgba(2,53,72,.14);
@@ -120,14 +144,15 @@
     }
     .btn:active{ transform: translateY(0px) scale(.99); }
 
-    /* HERO IMAGE */
+    /* HERO IMAGE (BIGGER) */
     .heroMedia{
-      margin-top: 18px;
+      margin-top: 22px;
       border: 1px solid rgba(255,255,255,.10);
       border-radius: 24px;
       overflow:hidden;
       background: rgba(255,255,255,.03);
-      max-width: 860px;
+      width: 100%;
+      max-width: var(--max); /* was 860px */
     }
     .heroImg{
       width:100%;
@@ -244,26 +269,26 @@
     <div class="wrap heroInner" id="heroFade">
       <h1 class="title">MALIA TAYLOR</h1>
 
-      <!-- Roles become the buttons -->
-      <div class="row" aria-label="Roles">
-        <a class="btn" href="writer.html">Writer</a>
-        <a class="btn" href="producer.html">Producer</a>
-        <a class="btn" href="intimacy.html">Intimacy Coordinator</a>
-      </div>
+      <!-- Roles (subtitle-style links, no blocks) -->
+      <nav class="roleRow" aria-label="Roles">
+        <a class="roleLink" href="writer.html">Writer</a>
+        <a class="roleLink" href="producer.html">Producer</a>
+        <a class="roleLink" href="intimacy.html">Intimacy Coordinator</a>
+      </nav>
 
       <!-- Big image below subtitle -->
       <div class="heroMedia" aria-label="Hero image">
-        <!-- Add your hero image here later:
-             1) create /images folder in your repo
-             2) upload images/hero-home.jpg
-             3) uncomment the img below and delete the placeholder div
+        <!-- HOW TO ADD IMAGES:
+             1) Put your file in /images (same level as index.html)
+             2) Example file name: images/hero-home.jpg
+             3) Uncomment the <img> below and delete the placeholder div
 
         <img class="heroImg" src="images/hero-home.jpg" alt="Malia Taylor" />
         -->
         <div class="heroPlaceholder">Add image: /images/hero-home.jpg</div>
       </div>
 
-      <!-- Mystic/Healer/Rebel row -->
+      <!-- Mystic/Healer/Rebel row (kept as buttons) -->
       <div class="row" aria-label="Mystic identity pages" style="margin-top: 18px;">
         <a class="btn" href="mystic.html">Mystic</a>
         <a class="btn" href="healer.html">Healer</a>
@@ -293,8 +318,10 @@
         </div>
 
         <div class="bioPhoto" aria-label="Bio photo">
-          <!-- Add bio photo later:
-               upload images/bio.jpg then uncomment below
+          <!-- HOW TO ADD BIO PHOTO:
+               1) Put file in /images (example: images/bio.jpg)
+               2) Uncomment <img> and delete placeholder
+
           <img src="images/bio.jpg" alt="Malia Taylor portrait" />
           -->
           <div class="ph">Add image: /images/bio.jpg</div>
