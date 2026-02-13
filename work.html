@@ -1,1 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Work — Malia Taylor</title>
+  <meta name="theme-color" content="#000000" />
+  <style>
+    :root{
+      --bg:#000; --fg:#fff;
+      --muted: rgba(255,255,255,.70);
+      --hair2: rgba(255,255,255,.07);
+      --accent:#023548;
+      --max: 1100px; --r: 18px; --pill: 999px;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      --display: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+    a{color:var(--fg);text-decoration:none}
+    a:hover{opacity:.86}
+    .wrap{max-width:var(--max);margin:0 auto;padding:40px 22px 90px;}
+    header{padding:22px 0 26px;border-bottom:1px solid var(--hair2);}
+    .top{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    }
+    .h1{
+      margin:0; font-family:var(--display);
+      letter-spacing:.06em; text-transform:uppercase;
+      font-size: clamp(28px, 4vw, 40px);
+    }
+    .nav a{
+      font-size:12px; letter-spacing:.24em; text-transform:uppercase;
+      color: rgba(255,255,255,.68);
+      border-bottom: 1px solid transparent; padding-bottom:6px;
+      margin-left:16px;
+    }
+    .nav a:hover{ color: rgba(255,255,255,.92); border-bottom-color: rgba(2,53,72,.85); }
+
+    .roleBar{margin-top:18px; display:flex; gap:10px; flex-wrap:wrap;}
+    .pill{
+      border: 1px solid rgba(2,53,72,.80);
+      background: rgba(2,53,72,.10);
+      border-radius: var(--pill);
+      padding: 12px 14px;
+      font-size: 12px;
+      letter-spacing:.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.92);
+      cursor:pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+    .pill:hover{ transform: translateY(-1px); }
+    .pill[aria-pressed="true"]{
+      border-color: rgba(2,53,72,.98);
+      background: rgba(2,53,72,.16);
+      box-shadow: 0 0 0 6px rgba(2,53,72,.10);
+    }
+
+    .section{padding:44px 0; border-bottom:1px solid var(--hair2);}
+    .head{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:16px;}
+    .h2{margin:0;font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.86);}
+    .hint{margin:0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.50);}
+
+    .cards{display:grid; grid-template-columns: 1fr 1fr; gap:14px;}
+    @media (max-width: 880px){ .cards{grid-template-columns:1fr;} }
+    .card{
+      border:1px solid var(--hair2);
+      border-radius: var(--r);
+      padding:18px;
+      background: rgba(255,255,255,.02);
+      min-height: 120px;
+      position:relative;
+      overflow:hidden;
+    }
+    .card:before{
+      content:"";
+      position:absolute; right:-40px; top:-40px;
+      width:140px; height:140px;
+      background: radial-gradient(circle at 30% 30%, rgba(2,53,72,.55), transparent 60%);
+      opacity:.85;
+      pointer-events:none;
+    }
+    .title{margin:0;font-size:18px;font-weight:600;letter-spacing:.04em;}
+    .meta{margin-top:10px;color:rgba(255,255,255,.70);line-height:1.6;font-size:14px;}
+    .tags{margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;}
+    .tag{
+      border:1px solid rgba(2,53,72,.65);
+      background: rgba(2,53,72,.10);
+      border-radius: var(--pill);
+      padding: 8px 10px;
+      font-size: 11px;
+      letter-spacing:.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.88);
+    }
+    footer{padding-top:22px;color:rgba(255,255,255,.50);font-size:12px;letter-spacing:.20em;text-transform:uppercase;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+    :focus-visible{ outline: 2px solid rgba(2,53,72,.95); outline-offset: 3px; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="top">
+        <h1 class="h1">Work</h1>
+        <div class="nav">
+          <a href="index.html">Home</a>
+          <a href="#projects">Projects</a>
+          <a href="#media">Media</a>
+        </div>
+      </div>
+
+      <div class="roleBar" role="group" aria-label="Role filters">
+        <button class="pill" data-role="all" aria-pressed="true">All</button>
+        <button class="pill" data-role="writer" aria-pressed="false">Writer</button>
+        <button class="pill" data-role="producer" aria-pressed="false">Producer</button>
+        <button class="pill" data-role="intimacy" aria-pressed="false">Intimacy</button>
+      </div>
+    </header>
+
+    <section id="projects" class="section">
+      <div class="head">
+        <h2 class="h2">Projects</h2>
+        <p class="hint">filtered</p>
+      </div>
+
+      <div class="cards">
+        <!-- Add your real projects later. Just duplicate cards. -->
+        <article class="card" data-roles="writer">
+          <h3 class="title">Project Title</h3>
+          <div class="meta">Feature / Short / Series • Year • One clean line.</div>
+          <div class="tags"><span class="tag">Writer</span></div>
+        </article>
+
+        <article class="card" data-roles="producer">
+          <h3 class="title">Project Title</h3>
+          <div class="meta">Feature / Short / Series • Year • One clean line.</div>
+          <div class="tags"><span class="tag">Producer</span></div>
+        </article>
+
+        <article class="card" data-roles="intimacy">
+          <h3 class="title">Project Title</h3>
+          <div class="meta">Feature / Short / Series • Year • One clean line.</div>
+          <div class="tags"><span class="tag">Intimacy</span></div>
+        </article>
+
+        <article class="card" data-roles="writer producer">
+          <h3 class="title">Project Title</h3>
+          <div class="meta">Feature / Short / Series • Year • One clean line.</div>
+          <div class="tags"><span class="tag">Writer</span><span class="tag">Producer</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="media" class="section" style="border-bottom:none;">
+      <div class="head">
+        <h2 class="h2">Media</h2>
+        <p class="hint">links later</p>
+      </div>
+
+      <div class="cards">
+        <article class="card" data-roles="all">
+          <h3 class="title">Press / Interviews</h3>
+          <div class="meta">Add 2–4 strong links when ready.</div>
+          <div class="tags"><span class="tag">Media</span></div>
+        </article>
+
+        <article class="card" data-roles="all">
+          <h3 class="title">Reel / Portfolio</h3>
+          <div class="meta">Add Vimeo/YouTube links when ready.</div>
+          <div class="tags"><span class="tag">Reel</span></div>
+        </article>
+      </div>
+
+      <footer>
+        <div>© <span id="y"></span> Malia Taylor</div>
+        <div style="color:rgba(255,255,255,.62)">#023548</div>
+      </footer>
+    </section>
+  </div>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    const pills = Array.from(document.querySelectorAll('.pill'));
+    const cards = Array.from(document.querySelectorAll('[data-roles]'));
+
+    function setRole(role){
+      pills.forEach(p => p.setAttribute('aria-pressed', String(p.dataset.role === role)));
+      cards.forEach(c => {
+        const roles = (c.getAttribute('data-roles')||'').split(/\s+/).filter(Boolean);
+        c.style.display = (role === 'all' || roles.includes(role) || roles.includes('all')) ? 'block' : 'none';
+      });
+      try{ localStorage.setItem('mt_work_role', role); }catch(e){}
+    }
+
+    pills.forEach(btn => btn.addEventListener('click', () => setRole(btn.dataset.role)));
+
+    let stored = 'all';
+    try{ stored = localStorage.getItem('mt_work_role') || 'all'; }catch(e){}
+    setRole(stored);
+  </script>
+</body>
+</html>
 
