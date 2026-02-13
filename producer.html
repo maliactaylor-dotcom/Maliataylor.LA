@@ -1,261 +1,197 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Producer — Malia Taylor</title>
-  <meta name="theme-color" content="#000000" />
-  <style>
-    :root{
-      --bg:#000; --fg:#fff;
-      --muted: rgba(255,255,255,.74);
-      --hair2: rgba(255,255,255,.08);
-      --accent:#023548;
-      --max: 980px; --r: 20px;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      --display: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
-    a{color:var(--fg);text-decoration:none}
-    a:hover{opacity:.9}
-    :focus-visible{ outline: 2px solid rgba(2,53,72,.95); outline-offset: 3px; border-radius: 12px; }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Producer — Malia Taylor</title>
 
-    .wrap{max-width:var(--max);margin:0 auto;padding:42px 22px 90px;}
+<style>
+:root{
+--bg:#000;
+--fg:#fff;
+--hair:rgba(255,255,255,.08);
+--accent:#023548;
+--max:1000px;
+--sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+}
 
-    /* Sticky header BUT does not block clicks */
-    header{
-      position:sticky; top:0;
-      background: rgba(0,0,0,.86);
-      backdrop-filter: blur(10px);
-      z-index: 10;
-      border-bottom: 1px solid var(--hair2);
-      padding: 14px 0 14px;
-    }
+*{box-sizing:border-box}
+body{
+margin:0;
+background:var(--bg);
+color:var(--fg);
+font-family:var(--sans);
+-webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
 
-    .top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      padding: 8px 0 10px;
-    }
+/* HEADER */
+header{
+position:sticky;
+top:0;
+z-index:100;
+background:rgba(0,0,0,.82);
+backdrop-filter:blur(10px);
+border-bottom:1px solid var(--hair);
+padding:8px 0;
+}
 
-    .miniNav{
-      display:flex; gap:14px; flex-wrap:wrap; align-items:center;
-    }
-    .miniNav a{
-      font-size:12px; letter-spacing:.24em; text-transform:uppercase;
-      color: rgba(255,255,255,.68);
-      border-bottom:1px solid transparent;
-      padding-bottom:6px;
-    }
-    .miniNav a:hover{ color: rgba(255,255,255,.92); border-bottom-color: rgba(2,53,72,.85); }
+.nav{
+max-width:var(--max);
+margin:auto;
+padding:0 18px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:14px;
+flex-wrap:wrap;
+}
 
-    .swipeHint{
-      font-size: 11px;
-      letter-spacing: .26em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.46);
-      user-select:none;
-      pointer-events:none;
-    }
+.logo{
+font-size:12px;
+letter-spacing:.3em;
+opacity:.7;
+}
 
-    /* 6 page buttons */
-    .pager{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      padding-bottom: 10px;
-    }
-    @media (min-width: 860px){
-      .pager{ grid-template-columns: repeat(6, 1fr); }
-    }
+.links{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
 
-    .pill{
-      border: 1px solid rgba(2,53,72,.80);
-      background: rgba(2,53,72,.12);
-      border-radius: 18px;
-      padding: 14px 12px;
-      font-size: 11px;
-      letter-spacing:.26em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.92);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height: 52px;
-      -webkit-tap-highlight-color: transparent;
-      transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
-      position:relative;
-      z-index: 20; /* ensures above sticky background */
-    }
-    .pill:hover{ transform: translateY(-1px); border-color: rgba(2,53,72,.98); background: rgba(2,53,72,.16); box-shadow: 0 0 0 6px rgba(2,53,72,.10); }
+.pill{
+border:1px solid rgba(2,53,72,.7);
+background:rgba(2,53,72,.15);
+padding:9px 12px;
+border-radius:14px;
+font-size:10px;
+letter-spacing:.25em;
+text-transform:uppercase;
+transition:.18s;
+}
+.pill:hover{
+background:rgba(2,53,72,.28);
+border-color:rgba(2,53,72,1);
+transform:translateY(-1px);
+}
 
-    .pill.active{
-      border-color: rgba(2,53,72,.98);
-      background: rgba(2,53,72,.18);
-      box-shadow: 0 0 0 6px rgba(2,53,72,.10);
-    }
+/* PAGE */
+.wrap{
+max-width:var(--max);
+margin:auto;
+padding:60px 22px 100px;
+}
 
-    .h1{
-      margin: 16px 0 8px;
-      font-family: var(--display);
-      font-weight: 650;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      font-size: clamp(56px, 8vw, 104px);
-      line-height: 1.01;
-      text-shadow: 0 0 28px rgba(2,53,72,.22);
-    }
-    .sub{
-      margin: 0 0 14px;
-      color: rgba(255,255,255,.78);
-      font-size: 12px;
-      letter-spacing: .30em;
-      text-transform: uppercase;
-    }
+h1{
+margin:0 0 24px;
+font-size:clamp(42px,7vw,72px);
+letter-spacing:.06em;
+text-transform:uppercase;
+}
 
-    .section{padding:46px 0;border-bottom:1px solid var(--hair2);}
-    .head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px;}
-    .h2{margin:0;font-size:13px;letter-spacing:.30em;text-transform:uppercase;color:rgba(255,255,255,.86);}
-    .hint{margin:0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.52);}
+.heroImg{
+width:100%;
+border-radius:22px;
+margin-bottom:28px;
+}
 
-    .statement{
-      margin:0;
-      font-size: clamp(17px, 2.2vw, 22px);
-      line-height: 1.7;
-      color: rgba(255,255,255,.86);
-      max-width: 78ch;
-      border-top: 1px solid var(--hair2);
-      padding-top: 18px;
-    }
+.statement{
+font-size:clamp(18px,2vw,22px);
+line-height:1.7;
+opacity:.9;
+max-width:800px;
+margin-bottom:70px;
+}
 
-    /* One picture per page */
-    .heroMedia{
-      margin-top: 22px;
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: 24px;
-      overflow:hidden;
-      background: rgba(255,255,255,.03);
-      max-width: 860px;
-    }
-    .heroImg{ width:100%; height:auto; display:block; }
-    .ph{
-      aspect-ratio: 16/9;
-      display:flex; align-items:center; justify-content:center;
-      color: rgba(255,255,255,.52);
-      font-size: 12px;
-      letter-spacing:.26em;
-      text-transform: uppercase;
-      padding: 18px;
-      text-align:center;
-    }
+.sectionTitle{
+font-size:12px;
+letter-spacing:.32em;
+text-transform:uppercase;
+opacity:.6;
+margin-bottom:20px;
+}
 
-    .cards{display:grid;grid-template-columns:1fr;gap:12px;max-width:860px;}
-    .card{
-      border:1px solid var(--hair2);
-      border-radius: var(--r);
-      padding:18px;
-      background: rgba(255,255,255,.02);
-      position:relative;
-      overflow:hidden;
-    }
-    .card:before{
-      content:"";
-      position:absolute; right:-40px; top:-40px;
-      width:140px; height:140px;
-      background: radial-gradient(circle at 30% 30%, rgba(2,53,72,.55), transparent 60%);
-      opacity:.85;
-      pointer-events:none;
-    }
-    .t{margin:0;font-size:18px;font-weight:600;letter-spacing:.04em;}
-    .m{margin-top:10px;color:rgba(255,255,255,.70);line-height:1.6;font-size:14px;}
-  </style>
+.project{
+border-top:1px solid var(--hair);
+padding:20px 0;
+}
+
+.projectTitle{
+font-size:20px;
+margin-bottom:6px;
+}
+
+.projectDesc{
+opacity:.7;
+line-height:1.6;
+}
+
+/* footer */
+footer{
+margin-top:80px;
+font-size:11px;
+letter-spacing:.2em;
+opacity:.5;
+text-transform:uppercase;
+}
+</style>
 </head>
+
 <body>
-  <header>
-    <div class="wrap">
-      <div class="top">
-        <div class="miniNav">
-          <a href="index.html">Home</a>
-        </div>
-        <div class="swipeHint">Swipe left/right</div>
-      </div>
 
-      <div class="pager" aria-label="All pages">
-        <a class="pill active" href="writer.html">Writer</a>
-        <a class="pill" href="producer.html">Producer</a>
-        <a class="pill" href="intimacy.html">Intimacy</a>
-        <a class="pill" href="mystic.html">Mystic</a>
-        <a class="pill" href="healer.html">Healer</a>
-        <a class="pill" href="rebel.html">Rebel</a>
-      </div>
-    </div>
-  </header>
+<header>
+<div class="nav">
 
-  <div class="wrap">
-    <h1 class="h1">Writer</h1>
-    <p class="sub">Malia Taylor</p>
+<div class="logo">MALIA TAYLOR</div>
 
-    <section class="section">
-      <div class="head">
-        <h2 class="h2">Statement</h2>
-        <p class="hint">minimal</p>
-      </div>
+<div class="links">
+<a class="pill" href="writer.html">Writer</a>
+<a class="pill" href="intimacy.html">Intimacy</a>
+<a class="pill" href="mystic.html">Mystic</a>
+<a class="pill" href="healer.html">Healer</a>
+<a class="pill" href="rebel.html">Rebel</a>
+<a class="pill" href="index.html">Home</a>
+</div>
 
-      <p class="statement">
-        A precise, elegant paragraph about voice, themes, and emotional truth. Clean. Editorial. No fluff.
-      </p>
+</div>
+</header>
 
-      <div class="heroMedia" aria-label="Writer image">
-        <!-- Add image later:
-        <img class="heroImg" src="images/hero-writer.jpg" alt="Writer image" />
-        -->
-        <div class="ph">Add image: /images/hero-writer.jpg</div>
-      </div>
-    </section>
+<div class="wrap">
 
-    <section class="section" style="border-bottom:none;">
-      <div class="head">
-        <h2 class="h2">Projects</h2>
-        <p class="hint">selected</p>
-      </div>
+<h1>Producer</h1>
 
-      <div class="cards">
-        <article class="card">
-          <h3 class="t">Project Title</h3>
-          <div class="m">Feature / Short / Series • Year • One clean line.</div>
-        </article>
-      </div>
-    </section>
-  </div>
+<img class="heroImg" src="images/producer.jpg" alt="Producer image">
 
-  <script>
-    // Swipe navigation (works even if buttons do)
-    const order = ["writer.html","producer.html","intimacy.html","mystic.html","healer.html","rebel.html"];
-    const current = "writer.html";
-    const idx = order.indexOf(current);
+<p class="statement">
+Malia Taylor produces with calm authority and clear creative taste. Her process centers collaboration, safety, and story, translating bold ideas into executable plans without losing emotional texture. She builds sets that feel intentional, grounded, and artist-forward, where logistics serve the work instead of controlling it.
+</p>
 
-    let sx=null, sy=null;
-    window.addEventListener("touchstart", (e)=>{
-      const t=e.touches[0]; sx=t.clientX; sy=t.clientY;
-    }, {passive:true});
+<div class="sectionTitle">Selected Projects</div>
 
-    window.addEventListener("touchend", (e)=>{
-      if(sx===null) return;
-      const t=e.changedTouches[0];
-      const dx=t.clientX - sx;
-      const dy=t.clientY - sy;
-      sx=null; sy=null;
+<div class="project">
+<div class="projectTitle">PROJECT TITLE</div>
+<div class="projectDesc">Feature / Short / Series • Year • One clean line about scope, tone, or impact.</div>
+</div>
 
-      if(Math.abs(dx) < 60) return;
-      if(Math.abs(dy) > 90) return;
+<div class="project">
+<div class="projectTitle">PROJECT TITLE</div>
+<div class="projectDesc">Feature / Short / Series • Year • One clean line about scope, tone, or impact.</div>
+</div>
 
-      if(dx < 0 && idx < order.length - 1) window.location.href = order[idx+1];
-      if(dx > 0 && idx > 0) window.location.href = order[idx-1];
-    }, {passive:true});
-  </script>
+<div class="project">
+<div class="projectTitle">PROJECT TITLE</div>
+<div class="projectDesc">Feature / Short / Series • Year • One clean line about scope, tone, or impact.</div>
+</div>
+
+<footer>
+© <span id="y"></span> Malia Taylor
+</footer>
+
+</div>
+
+<script>
+document.getElementById("y").textContent=new Date().getFullYear();
+</script>
+
 </body>
 </html>
