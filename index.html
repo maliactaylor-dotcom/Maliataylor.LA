@@ -1,56 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Malia Taylor — Producer • Writer • Intimacy Coordinator</title>
-  <meta name="description" content="Malia Taylor — Producer, Writer, Intimacy Coordinator. Mystic, healer, rebel." />
-  <meta name="theme-color" content="#0b0b0d" />
-
-  <!-- Optional: Social preview (edit later) -->
-  <meta property="og:title" content="Malia Taylor" />
-  <meta property="og:description" content="Producer • Writer • Intimacy Coordinator. Mystic, healer, rebel." />
-  <meta property="og:type" content="website" />
+  <meta name="description" content="Malia Taylor — Producer, Writer, Intimacy Coordinator." />
+  <meta name="theme-color" content="#000000" />
 
   <style>
     :root{
-      --bg:#0b0b0d;
-      --panel:#0f1014;
-      --fg:#f5f2ec;
-      --muted: rgba(245,242,236,.70);
-      --hair: rgba(245,242,236,.14);
-      --hair2: rgba(245,242,236,.08);
-      --glow: rgba(245,242,236,.22);
-      --max: 1040px;
+      --bg:#000;
+      --fg:#fff;
+      --muted: rgba(255,255,255,.72);
+      --hair: rgba(255,255,255,.14);
+      --hair2: rgba(255,255,255,.08);
+      --accent:#023548;
 
-      --radius: 18px;
-      --radius2: 999px;
+      --max: 1100px;
+      --r: 18px;
+      --pill: 999px;
 
-      --fontSans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      --fontSerif: ui-serif, Georgia, "Times New Roman", Times, serif;
-      --fontDisplay: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      --serif: ui-serif, Georgia, "Times New Roman", Times, serif;
+      --display: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
-      background:
-        radial-gradient(900px 520px at 18% 12%, rgba(255,255,255,.05), transparent 60%),
-        radial-gradient(820px 520px at 84% 34%, rgba(255,255,255,.045), transparent 62%),
-        radial-gradient(900px 700px at 50% 90%, rgba(255,255,255,.03), transparent 62%),
-        var(--bg);
-      color:var(--fg);
-      font-family: var(--fontSans);
-      letter-spacing:.2px;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--sans);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
-    a{ color: var(--fg); text-decoration:none; }
-    a:hover{ opacity:.86; }
+    a{color:var(--fg); text-decoration:none}
+    a:hover{opacity:.86}
 
-    /* Subtle film grain (very light) */
+    /* Subtle grain */
     .grain:before{
       content:"";
       position:fixed;
@@ -59,556 +48,406 @@
       background-image:
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
       mix-blend-mode: overlay;
-      opacity:.07;
+      opacity:.06;
     }
 
-    .wrap{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 56px 22px 90px;
-    }
-
-    /* Header / Hero */
-    header{
-      padding: 64px 0 30px;
-      border-bottom: 1px solid var(--hair2);
-    }
-
-    .kicker{
+    /* HERO */
+    .hero{
+      min-height: 100vh;
       display:flex;
       align-items:center;
-      gap:10px;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: .22em;
-      font-size: 12px;
-      margin-bottom: 14px;
+      justify-content:center;
+      padding: 56px 22px;
+      position:relative;
+      overflow:hidden;
     }
-    .dot{
-      width:6px;height:6px;border-radius:50%;
-      background: rgba(245,242,236,.42);
-      box-shadow: 0 0 18px rgba(245,242,236,.35);
+
+    /* Accent glow line */
+    .hero:after{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:0;
+      width: 900px;
+      height: 900px;
+      transform: translateX(-50%);
+      background:
+        radial-gradient(circle at 50% 25%, rgba(2,53,72,.26), transparent 58%);
+      filter: blur(2px);
+      opacity: .9;
+      pointer-events:none;
+    }
+
+    .heroInner{
+      width:100%;
+      max-width: var(--max);
+      position:relative;
+      z-index:1;
     }
 
     .title{
       margin:0;
-      font-family: var(--fontDisplay);
+      font-family: var(--display);
       font-weight: 600;
       letter-spacing: .06em;
       text-transform: uppercase;
-      font-size: clamp(34px, 5vw, 56px);
-      line-height: 1.06;
-      text-shadow: 0 0 22px var(--glow);
+      font-size: clamp(44px, 7vw, 86px);
+      line-height: 1.02;
     }
 
-    .subtitle{
-      margin: 14px 0 0;
-      color: var(--muted);
-      max-width: 64ch;
-      font-size: 16px;
-      line-height: 1.7;
-    }
-
-    .rolesLine{
-      margin: 18px 0 0;
-      color: rgba(245,242,236,.88);
+    .roles{
+      margin-top: 14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
       font-size: 14px;
-      letter-spacing:.06em;
-    }
-    .rolesLine small{
-      display:block;
-      margin-top:10px;
-      color: var(--muted);
-      letter-spacing:.12em;
+      letter-spacing:.18em;
       text-transform: uppercase;
-      font-size: 11px;
+      color: rgba(255,255,255,.90);
     }
 
-    /* Role selector */
-    .roleBar{
-      margin: 26px 0 0;
+    .roles .sep{
+      width:6px;height:6px;border-radius:50%;
+      background: var(--accent);
+      box-shadow: 0 0 18px rgba(2,53,72,.65);
+      opacity: .95;
+    }
+
+    .heroActions{
+      margin-top: 32px;
       display:flex;
       flex-wrap:wrap;
       gap:10px;
+      align-items:center;
     }
-    .pill{
+
+    .pillBtn{
       border: 1px solid var(--hair);
       background: rgba(255,255,255,.02);
-      border-radius: var(--radius2);
-      padding: 10px 14px;
-      font-size: 13px;
-      letter-spacing:.08em;
+      border-radius: var(--pill);
+      padding: 12px 14px;
+      font-size: 12px;
+      letter-spacing:.20em;
       text-transform: uppercase;
-      color: rgba(245,242,236,.86);
+      color: rgba(255,255,255,.90);
       cursor:pointer;
       transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
       user-select:none;
     }
-    .pill:hover{ transform: translateY(-1px); }
-    .pill[aria-pressed="true"]{
-      background: rgba(255,255,255,.05);
-      border-color: rgba(245,242,236,.24);
-      box-shadow: 0 0 0 6px rgba(245,242,236,.03);
-      color: rgba(245,242,236,.96);
+    .pillBtn:hover{ transform: translateY(-1px); }
+    .pillBtn[aria-pressed="true"]{
+      border-color: rgba(2,53,72,.9);
+      box-shadow: 0 0 0 6px rgba(2,53,72,.12);
+      background: rgba(2,53,72,.10);
     }
 
-    /* Sections */
-    .grid{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
+    .nav{
+      margin-top: 28px;
+      display:flex;
+      flex-wrap:wrap;
       gap: 18px;
-      padding-top: 34px;
     }
-
-    @media (max-width: 900px){
-      .grid{ grid-template-columns: 1fr; }
-    }
-
-    section{
-      border: 1px solid var(--hair2);
-      background: linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.015));
-      border-radius: var(--radius);
-      padding: 18px;
-    }
-
-    .sectionTitle{
-      margin: 0 0 10px;
+    .nav a{
+      color: rgba(255,255,255,.70);
       font-size: 12px;
-      letter-spacing: .22em;
+      letter-spacing: .24em;
       text-transform: uppercase;
-      color: var(--muted);
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      gap: 12px;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 6px;
+    }
+    .nav a:hover{
+      color: rgba(255,255,255,.92);
+      border-bottom-color: rgba(2,53,72,.8);
     }
 
-    .sectionTitle .hint{
-      font-size: 11px;
-      letter-spacing: .18em;
-      color: rgba(245,242,236,.52);
-      text-transform: uppercase;
+    /* MAIN */
+    main{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 22px 90px;
     }
 
-    .copy{
-      margin: 0;
-      color: rgba(245,242,236,.86);
-      line-height: 1.75;
-      font-size: 15px;
-    }
-
-    .bioBlock{
-      margin-top: 12px;
-      padding-top: 12px;
+    .section{
       border-top: 1px solid var(--hair2);
+      padding: 64px 0;
     }
 
-    /* Projects list */
-    .projects{
-      margin-top: 12px;
+    .sectionHead{
       display:flex;
-      flex-direction: column;
-      gap: 10px;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 18px;
+      margin-bottom: 20px;
     }
-    .project{
-      border: 1px solid var(--hair2);
-      background: rgba(0,0,0,.18);
-      border-radius: 14px;
-      padding: 12px 12px;
-      display:flex;
-      justify-content: space-between;
-      gap: 12px;
-    }
-    .project strong{
-      display:block;
-      font-weight: 600;
-      letter-spacing:.02em;
-    }
-    .project span{
-      display:block;
-      color: var(--muted);
-      margin-top: 4px;
-      font-size: 13px;
-      line-height: 1.45;
-    }
-    .tag{
-      align-self:flex-start;
-      border: 1px solid var(--hair2);
-      color: rgba(245,242,236,.78);
-      border-radius: var(--radius2);
-      padding: 8px 10px;
-      font-size: 11px;
+
+    .h2{
+      margin:0;
+      font-size: 14px;
+      letter-spacing: .26em;
       text-transform: uppercase;
-      letter-spacing: .18em;
-      white-space: nowrap;
-      background: rgba(255,255,255,.02);
+      color: rgba(255,255,255,.86);
     }
 
-    /* Sidebar blocks */
-    .stack{ display:flex; flex-direction:column; gap: 18px; }
+    .hint{
+      margin:0;
+      color: rgba(255,255,255,.55);
+      font-size: 12px;
+      letter-spacing:.18em;
+      text-transform: uppercase;
+    }
 
-    .links{
+    /* Big cards */
+    .cards{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 880px){
+      .cards{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      border: 1px solid var(--hair2);
+      border-radius: var(--r);
+      padding: 18px;
+      background: rgba(255,255,255,.02);
+      position:relative;
+      overflow:hidden;
+      min-height: 130px;
+    }
+
+    /* Accent corner */
+    .card:before{
+      content:"";
+      position:absolute;
+      right:-40px;
+      top:-40px;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle at 30% 30%, rgba(2,53,72,.55), transparent 60%);
+      opacity:.9;
+      pointer-events:none;
+    }
+
+    .cardTitle{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: .04em;
+      font-weight: 600;
+    }
+
+    .cardMeta{
+      margin-top: 10px;
+      color: rgba(255,255,255,.70);
+      line-height: 1.6;
+      font-size: 14px;
+      max-width: 70ch;
+    }
+
+    .tagRow{
+      margin-top: 14px;
       display:flex;
       flex-wrap:wrap;
       gap:10px;
-      margin-top: 12px;
     }
+
+    .tag{
+      border: 1px solid rgba(2,53,72,.65);
+      color: rgba(255,255,255,.88);
+      border-radius: var(--pill);
+      padding: 8px 10px;
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      background: rgba(2,53,72,.10);
+    }
+
+    /* Contact buttons */
     .btn{
       display:inline-flex;
       align-items:center;
       gap:10px;
       border-radius: 14px;
-      border: 1px solid var(--hair);
-      background: rgba(255,255,255,.02);
-      padding: 10px 12px;
-      font-size: 13px;
-      letter-spacing:.08em;
+      border: 1px solid rgba(2,53,72,.75);
+      background: rgba(2,53,72,.12);
+      padding: 12px 14px;
+      font-size: 12px;
+      letter-spacing:.22em;
       text-transform: uppercase;
-      color: rgba(245,242,236,.92);
+      color: rgba(255,255,255,.92);
       transition: transform .18s ease, background .18s ease, border-color .18s ease;
     }
     .btn:hover{
       transform: translateY(-1px);
-      border-color: rgba(245,242,236,.22);
-      background: rgba(255,255,255,.04);
-    }
-    .btn small{
-      letter-spacing:.18em;
-      font-size: 11px;
-      color: rgba(245,242,236,.62);
-      text-transform: uppercase;
+      background: rgba(2,53,72,.18);
+      border-color: rgba(2,53,72,.95);
     }
 
     footer{
-      margin-top: 34px;
-      padding-top: 20px;
       border-top: 1px solid var(--hair2);
-      color: rgba(245,242,236,.50);
-      font-size: 12px;
-      letter-spacing:.16em;
-      text-transform: uppercase;
-      display:flex;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    /* Reveal animation */
-    .reveal{
-      opacity:0;
-      transform: translateY(10px);
-      transition: opacity .6s ease, transform .6s ease;
-    }
-    .reveal.is-visible{
-      opacity:1;
-      transform: translateY(0);
-    }
-
-    /* Tiny top nav */
-    .topNav{
-      margin-top: 18px;
-      display:flex;
-      gap: 12px;
-      flex-wrap:wrap;
-    }
-    .topNav a{
-      color: rgba(245,242,236,.72);
+      padding: 22px 0 0;
+      margin-top: 32px;
+      color: rgba(255,255,255,.55);
       font-size: 12px;
       letter-spacing:.20em;
       text-transform: uppercase;
-      border-bottom: 1px solid transparent;
-      padding-bottom: 6px;
-    }
-    .topNav a:hover{
-      color: rgba(245,242,236,.92);
-      border-bottom-color: rgba(245,242,236,.22);
+      display:flex;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap:wrap;
     }
 
-    /* Accessibility focus */
-    :focus-visible{
-      outline: 2px solid rgba(245,242,236,.38);
-      outline-offset: 3px;
-      border-radius: 10px;
-    }
+    /* Reveal */
+    .reveal{ opacity:0; transform: translateY(10px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.is-visible{ opacity:1; transform: translateY(0); }
+
+    /* Focus */
+    :focus-visible{ outline: 2px solid rgba(2,53,72,.9); outline-offset: 3px; border-radius: 10px; }
   </style>
 </head>
 
 <body class="grain">
-  <div class="wrap">
-    <header class="reveal">
-      <div class="kicker"><span class="dot"></span><span>Minimalist Luxury • Editorial • Mystical Elegant</span></div>
-
+  <!-- HERO / HOME SCREEN -->
+  <section class="hero">
+    <div class="heroInner reveal">
       <h1 class="title">MALIA TAYLOR</h1>
 
-      <p class="rolesLine">
-        Producer. Writer. Intimacy Coordinator.
-        <small>mystic • healer • rebel</small>
-      </p>
-
-      <p class="subtitle">
-        A focused home for work, voice, and presence. Choose a role below to explore projects and statements through that lens.
-      </p>
-
-      <div class="roleBar" role="group" aria-label="Role selector">
-        <button class="pill" data-role="all" aria-pressed="true">All</button>
-        <button class="pill" data-role="producer" aria-pressed="false">Producer</button>
-        <button class="pill" data-role="writer" aria-pressed="false">Writer</button>
-        <button class="pill" data-role="intimacy" aria-pressed="false">Intimacy Coordinator</button>
+      <div class="roles" aria-label="Roles">
+        <span>Producer</span><span class="sep"></span>
+        <span>Writer</span><span class="sep"></span>
+        <span>Intimacy Coordinator</span>
       </div>
 
-      <nav class="topNav" aria-label="On-page navigation">
-        <a href="#bio">Bio</a>
-        <a href="#statement">Statements</a>
+      <div class="heroActions" role="group" aria-label="Role filter">
+        <button class="pillBtn" data-role="all" aria-pressed="true">All</button>
+        <button class="pillBtn" data-role="producer" aria-pressed="false">Producer</button>
+        <button class="pillBtn" data-role="writer" aria-pressed="false">Writer</button>
+        <button class="pillBtn" data-role="intimacy" aria-pressed="false">Intimacy</button>
+      </div>
+
+      <nav class="nav" aria-label="Jump links">
         <a href="#projects">Projects</a>
+        <a href="#about">About</a>
         <a href="#media">Media</a>
         <a href="#contact">Contact</a>
       </nav>
-    </header>
-
-    <div class="grid">
-      <!-- Left: main content -->
-      <div class="stack">
-        <section id="bio" class="reveal" aria-label="Bio">
-          <div class="sectionTitle">
-            <span>Bio</span>
-            <span class="hint">short + powerful</span>
-          </div>
-          <p class="copy">
-            <!-- Replace this with your real bio (or paste one and I’ll refine). -->
-            Malia Taylor creates with precision and pulse, blending cinematic craft with a grounded spiritual ethic.
-            Her work centers truth, consent, intimacy, and transformation, balancing elegance with edge.
-          </p>
-
-          <div class="bioBlock" data-role-block="producer">
-            <div class="sectionTitle"><span>Producer Bio</span><span class="hint">leadership + taste</span></div>
-            <p class="copy">
-              <!-- Replace -->
-              As a producer, Malia builds sets that feel safe to be honest in, shaping stories from development through delivery with calm authority.
-            </p>
-          </div>
-
-          <div class="bioBlock" data-role-block="writer">
-            <div class="sectionTitle"><span>Writer Bio</span><span class="hint">voice + structure</span></div>
-            <p class="copy">
-              <!-- Replace -->
-              As a writer, she crafts intimate character worlds with editorial clarity, letting silence speak and conflict land clean.
-            </p>
-          </div>
-
-          <div class="bioBlock" data-role-block="intimacy">
-            <div class="sectionTitle"><span>Intimacy Coordinator Bio</span><span class="hint">consent + choreography</span></div>
-            <p class="copy">
-              <!-- Replace -->
-              As an intimacy coordinator, Malia brings consent-forward structure to vulnerable scenes, protecting performance while preserving artistry.
-            </p>
-          </div>
-        </section>
-
-        <section id="statement" class="reveal" aria-label="Philosophy and statements">
-          <div class="sectionTitle">
-            <span>Statements</span>
-            <span class="hint">producer • writer • intimacy</span>
-          </div>
-
-          <div class="bioBlock" data-role-block="producer">
-            <div class="sectionTitle"><span>Producer</span><span class="hint">how she leads</span></div>
-            <p class="copy">
-              <!-- Replace -->
-              Producing is devotion: to the story, to the crew, and to the unseen emotional weather on set.
-              I build environments where excellence doesn’t require harm. We make beautiful things without breaking people.
-            </p>
-          </div>
-
-          <div class="bioBlock" data-role-block="writer">
-            <div class="sectionTitle"><span>Writer</span><span class="hint">why she writes</span></div>
-            <p class="copy">
-              <!-- Replace -->
-              Writing is a ritual of listening. I’m drawn to women who refuse simplification, to love that isn’t decorative,
-              and to endings that feel like truth instead of closure.
-            </p>
-          </div>
-
-          <div class="bioBlock" data-role-block="intimacy">
-            <div class="sectionTitle"><span>Intimacy Coordinator</span><span class="hint">the ethic</span></div>
-            <p class="copy">
-              <!-- Replace -->
-              Intimacy work is power work. I treat consent as choreography: specific, repeatable, adjustable.
-              When boundaries are clear, performance becomes fearless.
-            </p>
-          </div>
-
-          <div class="bioBlock" data-role-block="all">
-            <div class="sectionTitle"><span>Mystic • Healer • Rebel</span><span class="hint">the through-line</span></div>
-            <p class="copy">
-              <!-- Replace -->
-              The mystic in me is practical: breath, clarity, attention. The rebel is gentle: refusing to normalize harm.
-              The healer is precise: tending what the work asks of the body and the soul.
-            </p>
-          </div>
-        </section>
-
-        <section id="projects" class="reveal" aria-label="Projects">
-          <div class="sectionTitle">
-            <span>Projects</span>
-            <span class="hint">click roles to filter</span>
-          </div>
-
-          <div class="projects">
-            <!-- Duplicate/edit these cards. Add data-roles="producer writer intimacy" -->
-            <div class="project" data-roles="producer">
-              <div>
-                <strong>PROJECT TITLE (Producer)</strong>
-                <span>Format • Year • One-line prestige description that reads like a festival program.</span>
-              </div>
-              <div class="tag">Producer</div>
-            </div>
-
-            <div class="project" data-roles="writer">
-              <div>
-                <strong>PROJECT TITLE (Writer)</strong>
-                <span>Format • Year • A sharp logline that feels editorial, not “pitchy.”</span>
-              </div>
-              <div class="tag">Writer</div>
-            </div>
-
-            <div class="project" data-roles="intimacy">
-              <div>
-                <strong>PROJECT TITLE (Intimacy Coordinator)</strong>
-                <span>Format • Year • Notes: consent-forward, performance-safe, story-first.</span>
-              </div>
-              <div class="tag">Intimacy</div>
-            </div>
-
-            <div class="project" data-roles="producer writer">
-              <div>
-                <strong>PROJECT TITLE (Producer + Writer)</strong>
-                <span>Format • Year • A single line that communicates voice + execution.</span>
-              </div>
-              <div class="tag">Producer / Writer</div>
-            </div>
-          </div>
-        </section>
-
-        <section id="media" class="reveal" aria-label="Media">
-          <div class="sectionTitle">
-            <span>Media</span>
-            <span class="hint">press • reels • interviews</span>
-          </div>
-          <p class="copy">
-            Add links here as they exist. Keep it minimal: a few strong receipts, not a long list.
-          </p>
-
-          <div class="links" style="margin-top:14px;">
-            <a class="btn" href="#" onclick="return false;">
-              Media Kit <small>(coming soon)</small>
-            </a>
-            <a class="btn" href="#" onclick="return false;">
-              Reel <small>(link)</small>
-            </a>
-            <a class="btn" href="#" onclick="return false;">
-              Press <small>(link)</small>
-            </a>
-          </div>
-        </section>
-      </div>
-
-      <!-- Right: contact / socials -->
-      <div class="stack">
-        <section id="contact" class="reveal" aria-label="Contact">
-          <div class="sectionTitle">
-            <span>Contact</span>
-            <span class="hint">direct</span>
-          </div>
-
-          <p class="copy">
-            For collaborations, producing inquiries, writing, intimacy coordination, and aligned creative work:
-          </p>
-
-          <div class="links">
-            <a class="btn" href="mailto:maliactaylor@gmail.com">Email <small>maliactaylor@gmail.com</small></a>
-          </div>
-
-          <div style="margin-top:14px; border-top:1px solid var(--hair2); padding-top:14px;">
-            <div class="sectionTitle"><span>Social</span><span class="hint">optional</span></div>
-            <div class="links">
-              <!-- Replace # with real links or delete -->
-              <a class="btn" href="#" onclick="return false;">Instagram <small>@handle</small></a>
-              <a class="btn" href="#" onclick="return false;">IMDb <small>profile</small></a>
-              <a class="btn" href="#" onclick="return false;">Vimeo <small>work</small></a>
-            </div>
-          </div>
-        </section>
-
-        <section class="reveal" aria-label="Availability">
-          <div class="sectionTitle">
-            <span>Availability</span>
-            <span class="hint">optional</span>
-          </div>
-          <p class="copy">
-            <!-- Replace or delete -->
-            Currently available for select collaborations. Los Angeles-based. Remote-friendly.
-          </p>
-        </section>
-      </div>
     </div>
+  </section>
 
-    <footer class="reveal">
-      <div>© <span id="y"></span> Malia Taylor</div>
-      <div>Producer • Writer • Intimacy Coordinator</div>
-    </footer>
-  </div>
+  <main>
+    <!-- PROJECTS -->
+    <section id="projects" class="section reveal">
+      <div class="sectionHead">
+        <h2 class="h2">Projects</h2>
+        <p class="hint">filtered by role</p>
+      </div>
+
+      <div class="cards">
+        <!-- Replace placeholders anytime. Add roles in data-roles -->
+        <article class="card" data-roles="producer">
+          <h3 class="cardTitle">Project Title</h3>
+          <div class="cardMeta">Feature / Short / Series • Year • One clean line (optional).</div>
+          <div class="tagRow"><span class="tag">Producer</span></div>
+        </article>
+
+        <article class="card" data-roles="writer">
+          <h3 class="cardTitle">Project Title</h3>
+          <div class="cardMeta">Feature / Short / Series • Year • One clean line (optional).</div>
+          <div class="tagRow"><span class="tag">Writer</span></div>
+        </article>
+
+        <article class="card" data-roles="intimacy">
+          <h3 class="cardTitle">Project Title</h3>
+          <div class="cardMeta">Feature / Short / Series • Year • One clean line (optional).</div>
+          <div class="tagRow"><span class="tag">Intimacy</span></div>
+        </article>
+
+        <article class="card" data-roles="producer writer">
+          <h3 class="cardTitle">Project Title</h3>
+          <div class="cardMeta">Feature / Short / Series • Year • One clean line (optional).</div>
+          <div class="tagRow"><span class="tag">Producer</span><span class="tag">Writer</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section reveal">
+      <div class="sectionHead">
+        <h2 class="h2">About</h2>
+        <p class="hint">minimal</p>
+      </div>
+
+      <div class="cards">
+        <article class="card" data-role-block="all">
+          <h3 class="cardTitle">Bio</h3>
+          <div class="cardMeta">One short paragraph. Clean, confident. (Paste yours here and I’ll polish it.)</div>
+          <div class="tagRow"><span class="tag">Mystic</span><span class="tag">Healer</span><span class="tag">Rebel</span></div>
+        </article>
+
+        <article class="card" data-role-block="producer">
+          <h3 class="cardTitle">Producer</h3>
+          <div class="cardMeta">One tight paragraph about how she produces. (Placeholder.)</div>
+          <div class="tagRow"><span class="tag">Producer</span></div>
+        </article>
+
+        <article class="card" data-role-block="writer">
+          <h3 class="cardTitle">Writer</h3>
+          <div class="cardMeta">One tight paragraph about her voice + themes. (Placeholder.)</div>
+          <div class="tagRow"><span class="tag">Writer</span></div>
+        </article>
+
+        <article class="card" data-role-block="intimacy">
+          <h3 class="cardTitle">Intimacy Coordinator</h3>
+          <div class="cardMeta">One tight paragraph about process + ethics. (Placeholder.)</div>
+          <div class="tagRow"><span class="tag">Intimacy</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- MEDIA -->
+    <section id="media" class="section reveal">
+      <div class="sectionHead">
+        <h2 class="h2">Media</h2>
+        <p class="hint">links later</p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <h3 class="cardTitle">Press / Interviews</h3>
+          <div class="cardMeta">Add links when ready. Keep this section curated.</div>
+          <div class="tagRow"><span class="tag">Media</span></div>
+        </article>
+
+        <article class="card">
+          <h3 class="cardTitle">Reel / Portfolio</h3>
+          <div class="cardMeta">Add Vimeo/YouTube links later.</div>
+          <div class="tagRow"><span class="tag">Reel</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section reveal">
+      <div class="sectionHead">
+        <h2 class="h2">Contact</h2>
+        <p class="hint">direct</p>
+      </div>
+
+      <a class="btn" href="mailto:maliactaylor@gmail.com">Email • maliactaylor@gmail.com</a>
+
+      <footer>
+        <div>© <span id="y"></span> Malia Taylor</div>
+        <div style="color:rgba(255,255,255,.66)">#023548</div>
+      </footer>
+    </section>
+  </main>
 
   <script>
     // Year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Role filtering
-    const pills = Array.from(document.querySelectorAll('.pill'));
-    const projects = Array.from(document.querySelectorAll('.project'));
-    const roleBlocks = Array.from(document.querySelectorAll('[data-role-block]'));
-
-    function setRole(role){
-      // Update pills
-      pills.forEach(p => p.setAttribute('aria-pressed', String(p.dataset.role === role)));
-
-      // Filter projects
-      projects.forEach(card => {
-        const roles = (card.getAttribute('data-roles') || '').split(/\s+/).filter(Boolean);
-        const show = (role === 'all') || roles.includes(role);
-        card.style.display = show ? 'flex' : 'none';
-      });
-
-      // Show the right statement/bio blocks
-      roleBlocks.forEach(block => {
-        const blockRole = block.getAttribute('data-role-block');
-        const show =
-          (role === 'all' && (blockRole === 'all' || blockRole === 'producer' || blockRole === 'writer' || blockRole === 'intimacy'))
-          ? true
-          : (role !== 'all' && (blockRole === role || blockRole === 'all'));
-
-        // For Bio section we want: role-specific bio always visible in ALL mode too.
-        // The line above keeps it visible.
-
-        block.style.display = show ? 'block' : 'none';
-      });
-
-      // Save preference
-      try{ localStorage.setItem('mt_role', role); }catch(e){}
-    }
-
-    pills.forEach(btn => {
-      btn.addEventListener('click', () => setRole(btn.dataset.role));
-    });
-
-    // Restore role
-    let stored = 'all';
-    try{
-      const r = localStorage.getItem('mt_role');
-      if(r) stored = r;
-    }catch(e){}
-    setRole(stored);
-
-    // Scroll reveal
+    // Reveal
     const revealEls = Array.from(document.querySelectorAll('.reveal'));
     const io = new IntersectionObserver((entries) => {
       entries.forEach(ent => {
@@ -618,8 +457,37 @@
         }
       });
     }, { threshold: 0.12 });
-
     revealEls.forEach(el => io.observe(el));
+
+    // Role filtering
+    const pills = Array.from(document.querySelectorAll('.pillBtn'));
+    const cards = Array.from(document.querySelectorAll('[data-roles]'));
+    const roleBlocks = Array.from(document.querySelectorAll('[data-role-block]'));
+
+    function setRole(role){
+      pills.forEach(p => p.setAttribute('aria-pressed', String(p.dataset.role === role)));
+
+      // Projects filter
+      cards.forEach(c => {
+        const roles = (c.getAttribute('data-roles')||'').split(/\s+/).filter(Boolean);
+        c.style.display = (role === 'all' || roles.includes(role)) ? 'block' : 'none';
+      });
+
+      // About filter (show only relevant role card + always show Bio)
+      roleBlocks.forEach(b => {
+        const r = b.getAttribute('data-role-block');
+        const show = (r === 'all') || (role !== 'all' && r === role) || (role === 'all' && r === 'all');
+        b.style.display = show ? 'block' : 'none';
+      });
+
+      try{ localStorage.setItem('mt_role', role); }catch(e){}
+    }
+
+    pills.forEach(btn => btn.addEventListener('click', () => setRole(btn.dataset.role)));
+
+    let stored = 'all';
+    try{ stored = localStorage.getItem('mt_role') || 'all'; }catch(e){}
+    setRole(stored);
   </script>
 </body>
 </html>
