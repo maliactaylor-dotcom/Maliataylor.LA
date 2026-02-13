@@ -6,38 +6,223 @@
   <title>Mystic — Malia Taylor</title>
   <meta name="theme-color" content="#000000" />
   <style>
-    :root{--bg:#000;--fg:#fff;--muted:rgba(255,255,255,.70);--hair2:rgba(255,255,255,.07);--accent:#023548;--max:900px;--r:18px;--sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;--display:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;}
+    :root{
+      --bg:#000; --fg:#fff;
+      --muted: rgba(255,255,255,.74);
+      --hair2: rgba(255,255,255,.08);
+      --accent:#023548;
+      --max: 980px; --r: 20px; --pill: 999px;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      --display: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    }
     *{box-sizing:border-box}
     body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
     a{color:var(--fg);text-decoration:none}
-    a:hover{opacity:.86}
+    a:hover{opacity:.9}
+    :focus-visible{ outline: 2px solid rgba(2,53,72,.95); outline-offset: 3px; border-radius: 12px; }
+
     .wrap{max-width:var(--max);margin:0 auto;padding:46px 22px 90px;}
-    header{border-bottom:1px solid var(--hair2);padding-bottom:18px;margin-bottom:22px;}
-    .h1{margin:0;font-family:var(--display);letter-spacing:.08em;text-transform:uppercase;font-size:42px;}
-    .nav a{display:inline-block;margin-right:16px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.68);border-bottom:1px solid transparent;padding-bottom:6px;}
-    .nav a:hover{color:rgba(255,255,255,.92);border-bottom-color:rgba(2,53,72,.85);}
-    .card{border:1px solid var(--hair2);border-radius:var(--r);padding:20px;background:rgba(255,255,255,.02);position:relative;overflow:hidden;}
-    .card:before{content:"";position:absolute;right:-40px;top:-40px;width:140px;height:140px;background:radial-gradient(circle at 30% 30%, rgba(2,53,72,.55), transparent 60%);opacity:.85;pointer-events:none;}
-    .copy{margin:0;color:rgba(255,255,255,.82);line-height:1.75;font-size:15px;}
+    header{padding-bottom:18px;border-bottom:1px solid var(--hair2);margin-bottom:26px;position:sticky;top:0;background:rgba(0,0,0,.86);backdrop-filter: blur(10px);z-index:20;}
+    .top{
+      display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+      padding-top:10px;
+    }
+    .miniNav{
+      display:flex; gap:14px; flex-wrap:wrap; align-items:center;
+    }
+    .miniNav a{
+      font-size:12px; letter-spacing:.24em; text-transform:uppercase;
+      color: rgba(255,255,255,.68);
+      border-bottom:1px solid transparent;
+      padding-bottom:6px;
+    }
+    .miniNav a:hover{ color: rgba(255,255,255,.92); border-bottom-color: rgba(2,53,72,.85); }
+
+    .h1{
+      margin: 10px 0 6px;
+      font-family: var(--display);
+      font-weight: 650;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: clamp(52px, 8vw, 96px);
+      line-height: 1.01;
+      text-shadow: 0 0 28px rgba(2,53,72,.22);
+    }
+    .sub{
+      margin: 0 0 10px;
+      color: rgba(255,255,255,.78);
+      font-size: 12px;
+      letter-spacing: .30em;
+      text-transform: uppercase;
+    }
+
+    .pager{
+      margin-top: 12px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .pill{
+      border: 1px solid rgba(2,53,72,.80);
+      background: rgba(2,53,72,.12);
+      border-radius: 18px;
+      padding: 14px 14px;
+      font-size: 11px;
+      letter-spacing:.26em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.92);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width: 130px;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+    .pill:hover{ transform: translateY(-1px); border-color: rgba(2,53,72,.98); background: rgba(2,53,72,.16); box-shadow: 0 0 0 6px rgba(2,53,72,.10); }
+
+    .section{padding:46px 0;border-bottom:1px solid var(--hair2);}
+    .head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px;}
+    .h2{margin:0;font-size:13px;letter-spacing:.30em;text-transform:uppercase;color:rgba(255,255,255,.86);}
+    .hint{margin:0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.52);}
+
+    .statement{
+      margin:0;
+      font-size: clamp(17px, 2.2vw, 22px);
+      line-height: 1.7;
+      color: rgba(255,255,255,.86);
+      max-width: 78ch;
+      border-top: 1px solid var(--hair2);
+      padding-top: 18px;
+    }
+
+    /* PHOTO SLOT (optional) */
+    .heroImg{
+      margin-top: 22px;
+      width:100%;
+      max-width: 720px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.10);
+      display:block;
+    }
+
+    .cards{display:grid;grid-template-columns:1fr;gap:12px;max-width:860px;}
+    .card{
+      border:1px solid var(--hair2);
+      border-radius: var(--r);
+      padding:18px;
+      background: rgba(255,255,255,.02);
+      position:relative;
+      overflow:hidden;
+    }
+    .card:before{
+      content:"";
+      position:absolute; right:-40px; top:-40px;
+      width:140px; height:140px;
+      background: radial-gradient(circle at 30% 30%, rgba(2,53,72,.55), transparent 60%);
+      opacity:.85;
+      pointer-events:none;
+    }
+    .t{margin:0;font-size:18px;font-weight:600;letter-spacing:.04em;}
+    .m{margin-top:10px;color:rgba(255,255,255,.70);line-height:1.6;font-size:14px;}
+
+    /* Swipe hint */
+    .swipeHint{
+      margin-top: 8px;
+      font-size: 11px;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.46);
+    }
   </style>
 </head>
 <body>
+
   <div class="wrap">
+
     <header>
-      <div class="nav">
-        <a href="index.html">Home</a>
-        <a href="work.html">Work</a>
+      <div class="top">
+        <div class="miniNav">
+          <a href="index.html">Home</a>
+        </div>
+        <div class="swipeHint">Swipe left/right</div>
       </div>
-      <h1 class="h1">Mystic</h1>
+
+      <!-- quick jump row: all six -->
+      <div class="pager" aria-label="Role pages">
+        <a class="pill" href="writer.html">Writer</a>
+        <a class="pill" href="producer.html">Producer</a>
+        <a class="pill" href="intimacy.html">Intimacy</a>
+        <a class="pill" href="mystic.html">Mystic</a>
+        <a class="pill" href="healer.html">Healer</a>
+        <a class="pill" href="rebel.html">Rebel</a>
+      </div>
+
+      <h1 class="h1">Writer</h1>
+      <p class="sub">Malia Taylor</p>
     </header>
 
-    <div class="card">
-      <p class="copy">
-        <!-- Replace with her real mystic statement -->
-        A short, powerful paragraph about mysticism as practice, presence, and clarity. Clean. Not fluffy.
+    <section class="section">
+      <div class="head">
+        <h2 class="h2">Statement</h2>
+        <p class="hint">minimal</p>
+      </div>
+
+      <p class="statement">
+        <!-- Replace with the real writer paragraph -->
+        A precise, elegant paragraph about voice, themes, and emotional truth. Clean. Editorial. No fluff.
       </p>
-    </div>
+
+      <!-- PHOTO SLOT (optional):
+      <img class="heroImg" src="images/hero-writer.jpg" alt="Writer image" />
+      -->
+    </section>
+
+    <section class="section" style="border-bottom:none;">
+      <div class="head">
+        <h2 class="h2">Projects</h2>
+        <p class="hint">selected</p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <h3 class="t">Project Title</h3>
+          <div class="m">Feature / Short / Series • Year • One clean line.</div>
+        </article>
+        <article class="card">
+          <h3 class="t">Project Title</h3>
+          <div class="m">Feature / Short / Series • Year • One clean line.</div>
+        </article>
+      </div>
+    </section>
+
   </div>
+
+  <script>
+    // Simple swipe navigation across the 6 role pages
+    const order = ["writer.html","producer.html","intimacy.html","mystic.html","healer.html","rebel.html"];
+    const current = "writer.html";
+    const idx = order.indexOf(current);
+
+    let startX = null, startY = null;
+    window.addEventListener("touchstart", (e) => {
+      const t = e.touches[0];
+      startX = t.clientX; startY = t.clientY;
+    }, {passive:true});
+
+    window.addEventListener("touchend", (e) => {
+      if(startX === null) return;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - startX;
+      const dy = t.clientY - startY;
+      startX = null; startY = null;
+
+      // only horizontal swipes
+      if(Math.abs(dx) < 60) return;
+      if(Math.abs(dy) > 80) return;
+
+      if(dx < 0 && idx < order.length - 1) window.location.href = order[idx + 1];
+      if(dx > 0 && idx > 0) window.location.href = order[idx - 1];
+    }, {passive:true});
+  </script>
 </body>
 </html>
-
