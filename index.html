@@ -5,16 +5,19 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Malia Taylor</title>
   <meta name="theme-color" content="#000000" />
+
   <style>
     :root{
       --bg:#000; --fg:#fff;
-      --muted: rgba(255,255,255,.70);
+      --muted: rgba(255,255,255,.74);
       --hair: rgba(255,255,255,.12);
-      --hair2: rgba(255,255,255,.07);
+      --hair2: rgba(255,255,255,.08);
       --accent:#023548;
+
       --max: 1100px;
-      --r: 18px;
+      --r: 20px;
       --pill: 999px;
+
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       --display: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
@@ -29,19 +32,19 @@
       -moz-osx-font-smoothing: grayscale;
     }
     a{color:var(--fg); text-decoration:none}
-    a:hover{opacity:.86}
+    a:hover{opacity:.9}
+    :focus-visible{ outline: 2px solid rgba(2,53,72,.95); outline-offset: 3px; border-radius: 12px; }
 
-    /* subtle grain */
+    /* Subtle grain */
     .grain:before{
       content:"";
-      position:fixed; inset:0;
-      pointer-events:none;
+      position:fixed; inset:0; pointer-events:none;
       background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
       mix-blend-mode: overlay;
       opacity:.06;
     }
 
-    .wrap{max-width:var(--max); margin:0 auto; padding: 0 22px 90px;}
+    .wrap{ max-width:var(--max); margin:0 auto; padding: 0 22px 96px; }
 
     /* HERO */
     .hero{
@@ -49,86 +52,90 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      padding: 64px 0;
+      padding: 72px 0 56px;
       position:relative;
       overflow:hidden;
       border-bottom: 1px solid var(--hair2);
     }
     .hero:after{
       content:"";
-      position:absolute; left:50%; top:-120px;
-      width: 980px; height: 980px;
+      position:absolute; left:50%; top:-160px;
+      width: 1040px; height: 1040px;
       transform: translateX(-50%);
-      background: radial-gradient(circle at 50% 35%, rgba(2,53,72,.30), transparent 60%);
+      background: radial-gradient(circle at 50% 35%, rgba(2,53,72,.34), transparent 60%);
       pointer-events:none;
       opacity:.95;
+      filter: saturate(120%);
     }
     .heroInner{
       width:100%;
       max-width: var(--max);
       position:relative;
       z-index:1;
+      transition: opacity .25s ease, transform .25s ease;
     }
 
     .title{
       margin:0;
       font-family: var(--display);
-      font-weight: 600;
-      letter-spacing: .06em;
+      font-weight: 650;
+      letter-spacing: .08em;
       text-transform: uppercase;
-      font-size: clamp(48px, 7vw, 92px);
-      line-height: 1.02;
-      text-shadow: 0 0 20px rgba(2,53,72,.18);
+      font-size: clamp(54px, 8vw, 98px);
+      line-height: 1.01;
+      text-shadow: 0 0 28px rgba(2,53,72,.22);
     }
 
     .roles{
-      margin-top: 16px;
+      margin-top: 18px;
       display:flex;
       flex-wrap:wrap;
       gap:12px;
       align-items:center;
       font-size: 13px;
-      letter-spacing:.26em;
+      letter-spacing:.28em;
       text-transform: uppercase;
       color: rgba(255,255,255,.92);
     }
     .sep{
       width:6px;height:6px;border-radius:50%;
       background: var(--accent);
-      box-shadow: 0 0 18px rgba(2,53,72,.65);
+      box-shadow: 0 0 18px rgba(2,53,72,.70);
     }
 
-    .subnav{
-      margin-top: 30px;
+    /* BIG BUTTON GRID (iPhone-friendly) */
+    .grid{
+      margin-top: 34px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      max-width: 720px;
+    }
+    @media (min-width: 920px){
+      .grid{ grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    .tile{
+      border: 1px solid rgba(2,53,72,.78);
+      background: rgba(2,53,72,.12);
+      border-radius: 18px;
+      padding: 18px 16px;
+      min-height: 64px;
       display:flex;
-      flex-wrap:wrap;
-      gap:10px;
       align-items:center;
-    }
-
-    .pill{
-      border: 1px solid rgba(2,53,72,.70);
-      background: rgba(2,53,72,.10);
-      border-radius: var(--pill);
-      padding: 12px 14px;
+      justify-content:center;
+      text-align:center;
       font-size: 12px;
-      letter-spacing:.22em;
+      letter-spacing: .26em;
       text-transform: uppercase;
       color: rgba(255,255,255,.92);
       transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width: 120px;
+      -webkit-tap-highlight-color: transparent;
     }
-    .pill:hover{
-      transform: translateY(-1px);
-      border-color: rgba(2,53,72,.95);
-      background: rgba(2,53,72,.16);
-      box-shadow: 0 0 0 6px rgba(2,53,72,.10);
-    }
+    .tile:hover{ transform: translateY(-1px); border-color: rgba(2,53,72,.98); background: rgba(2,53,72,.16); box-shadow: 0 0 0 6px rgba(2,53,72,.10); }
+    .tile:active{ transform: translateY(0px) scale(.99); }
 
-    .linksRow{
+    .heroLinks{
       margin-top: 18px;
       display:flex;
       gap:18px;
@@ -136,24 +143,22 @@
     }
     .link{
       font-size: 12px;
-      letter-spacing:.24em;
+      letter-spacing:.26em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.68);
+      color: rgba(255,255,255,.70);
       border-bottom: 1px solid transparent;
       padding-bottom: 6px;
     }
     .link:hover{ color: rgba(255,255,255,.92); border-bottom-color: rgba(2,53,72,.85); }
 
     /* SECTIONS */
-    .section{ padding: 64px 0; border-bottom: 1px solid var(--hair2); }
-    .head{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:18px;
-      margin-bottom: 18px;
-    }
+    .section{ padding: 72px 0; border-bottom: 1px solid var(--hair2); }
+
+    .head{ display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom: 18px; }
     .h2{
       margin:0;
       font-size: 13px;
-      letter-spacing:.28em;
+      letter-spacing:.30em;
       text-transform: uppercase;
       color: rgba(255,255,255,.86);
     }
@@ -162,62 +167,86 @@
       font-size: 12px;
       letter-spacing:.18em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.50);
+      color: rgba(255,255,255,.52);
     }
 
-    .card{
-      border: 1px solid var(--hair2);
-      border-radius: var(--r);
-      padding: 20px;
-      background: rgba(255,255,255,.02);
+    /* Bigger bio, not a tiny box */
+    .bioBlock{
+      border-top: 1px solid var(--hair2);
+      padding-top: 18px;
+      max-width: 78ch;
     }
-    .copy{
+    .bioText{
       margin:0;
-      color: rgba(255,255,255,.82);
+      font-size: clamp(17px, 2.2vw, 22px);
       line-height: 1.7;
-      font-size: 15px;
-      max-width: 72ch;
+      color: rgba(255,255,255,.86);
+      letter-spacing: .01em;
     }
 
-    .contactBtn{
+    /* Contact */
+    .contactRow{
+      display:flex;
+      gap: 14px;
+      flex-wrap:wrap;
+      align-items:center;
       margin-top: 14px;
+    }
+    .contactBtn{
       display:inline-flex;
       align-items:center;
-      border-radius: 14px;
-      border: 1px solid rgba(2,53,72,.85);
-      background: rgba(2,53,72,.14);
-      padding: 12px 14px;
+      justify-content:center;
+      border-radius: 16px;
+      border: 1px solid rgba(2,53,72,.88);
+      background: rgba(2,53,72,.16);
+      padding: 14px 16px;
       font-size: 12px;
       letter-spacing:.22em;
       text-transform: uppercase;
       color: rgba(255,255,255,.92);
       transition: transform .18s ease, background .18s ease, border-color .18s ease;
     }
-    .contactBtn:hover{
-      transform: translateY(-1px);
-      border-color: rgba(2,53,72,.98);
-      background: rgba(2,53,72,.18);
+    .contactBtn:hover{ transform: translateY(-1px); background: rgba(2,53,72,.20); border-color: rgba(2,53,72,.98); }
+
+    .icons{
+      display:flex;
+      gap: 10px;
+      align-items:center;
     }
+    .iconBtn{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.03);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+    .iconBtn:hover{ transform: translateY(-1px); border-color: rgba(2,53,72,.75); background: rgba(2,53,72,.10); box-shadow: 0 0 0 6px rgba(2,53,72,.08); }
+
+    svg{display:block}
 
     footer{
       padding-top: 22px;
-      color: rgba(255,255,255,.50);
+      color: rgba(255,255,255,.52);
       font-size: 12px;
       letter-spacing:.20em;
       text-transform: uppercase;
       display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
     }
 
-    /* reveal */
+    /* Reveal */
     .reveal{opacity:0; transform: translateY(10px); transition: opacity .7s ease, transform .7s ease;}
     .reveal.is-visible{opacity:1; transform: translateY(0);}
-    :focus-visible{ outline: 2px solid rgba(2,53,72,.95); outline-offset: 3px; border-radius: 10px; }
+
   </style>
 </head>
 
 <body class="grain">
   <section class="hero">
-    <div class="wrap heroInner reveal">
+    <div class="wrap heroInner" id="heroFade">
       <h1 class="title">MALIA TAYLOR</h1>
 
       <div class="roles" aria-label="Roles">
@@ -226,17 +255,19 @@
         <span>Intimacy Coordinator</span>
       </div>
 
-      <!-- click-to-pages -->
-      <div class="subnav" aria-label="Identity pages">
-        <a class="pill" href="mystic.html">Mystic</a>
-        <a class="pill" href="healer.html">Healer</a>
-        <a class="pill" href="rebel.html">Rebel</a>
+      <!-- 6 pages -->
+      <div class="grid" aria-label="Explore sections">
+        <a class="tile" href="writer.html">Writer</a>
+        <a class="tile" href="producer.html">Producer</a>
+        <a class="tile" href="intimacy.html">Intimacy</a>
+        <a class="tile" href="mystic.html">Mystic</a>
+        <a class="tile" href="healer.html">Healer</a>
+        <a class="tile" href="rebel.html">Rebel</a>
       </div>
 
-      <div class="linksRow" aria-label="Navigation">
+      <div class="heroLinks">
         <a class="link" href="#bio">Bio</a>
         <a class="link" href="#contact">Contact</a>
-        <a class="link" href="work.html">Work</a>
       </div>
     </div>
   </section>
@@ -247,11 +278,17 @@
         <h2 class="h2">Bio</h2>
         <p class="hint">minimal</p>
       </div>
-      <div class="card">
-        <p class="copy">
-          <!-- Paste the real bio here (short, 3–5 lines). -->
+
+      <div class="bioBlock">
+        <p class="bioText">
+          <!-- Replace this with the real bio (2–5 lines). -->
           Malia Taylor is a producer, writer, and intimacy coordinator creating work with precision, elegance, and emotional truth.
         </p>
+        <!-- OPTIONAL PHOTO PLACEHOLDER for later:
+             Put an image file in your repo /images/portrait.jpg then uncomment below.
+
+        <img src="images/portrait.jpg" alt="Malia Taylor" style="margin-top:22px;width:100%;max-width:520px;border-radius:22px;border:1px solid rgba(255,255,255,.10);" />
+        -->
       </div>
     </section>
 
@@ -260,9 +297,35 @@
         <h2 class="h2">Contact</h2>
         <p class="hint">direct</p>
       </div>
-      <div class="card">
-        <p class="copy">For producing, writing, intimacy coordination, and aligned collaborations:</p>
+
+      <p class="bioText" style="max-width:70ch;margin:0; font-size: clamp(16px, 2vw, 20px); color: rgba(255,255,255,.84);">
+        For producing, writing, intimacy coordination, and aligned collaborations:
+      </p>
+
+      <div class="contactRow">
         <a class="contactBtn" href="mailto:maliactaylor@gmail.com">maliactaylor@gmail.com</a>
+
+        <!-- Socials: replace # with real links when ready -->
+        <div class="icons" aria-label="Social links">
+          <a class="iconBtn" href="#" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Z" stroke="white" opacity=".9" stroke-width="1.5"/>
+              <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="white" opacity=".9" stroke-width="1.5"/>
+              <path d="M17.5 6.5h.01" stroke="white" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </a>
+          <a class="iconBtn" href="#" aria-label="Vimeo">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M21 8.5c-.5 5-4.5 9.5-7.5 12-2 1.7-3.6 1.2-4.6-.6L6.4 13.5c-.7-1.5-1.3-1.4-2.4-.7L3 11.5c2.4-2 4.1-3.6 5.7-3.7 1.7-.1 2.4 1 2.9 2.7l1.5 5.8c.3 1.1.8 1.2 1.5.4 1-1.1 2.4-3.1 2.5-4.3.1-1.5-1.1-1.6-2.2-1.1.7-2.4 2.2-3.8 4.1-3.9 2.1-.1 3.1 1.4 3 3.1Z" stroke="white" opacity=".9" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="iconBtn" href="#" aria-label="IMDb">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M4 6h16v12H4z" stroke="white" opacity=".9" stroke-width="1.5"/>
+              <path d="M8 10v4M12 10v4M16 10v4" stroke="white" opacity=".9" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </div>
       </div>
 
       <footer class="reveal">
@@ -273,8 +336,10 @@
   </div>
 
   <script>
+    // year
     document.getElementById('y').textContent = new Date().getFullYear();
 
+    // reveal on scroll
     const revealEls = Array.from(document.querySelectorAll('.reveal'));
     const io = new IntersectionObserver((entries) => {
       entries.forEach(ent => {
@@ -285,6 +350,19 @@
       });
     }, { threshold: 0.12 });
     revealEls.forEach(el => io.observe(el));
+
+    // hero fade-out as you scroll
+    const hero = document.getElementById('heroFade');
+    function onScroll(){
+      const y = window.scrollY || 0;
+      const fadeStart = 0;
+      const fadeEnd = Math.min(window.innerHeight * 0.6, 520);
+      const t = Math.max(0, Math.min(1, (y - fadeStart) / (fadeEnd - fadeStart)));
+      hero.style.opacity = String(1 - t);
+      hero.style.transform = `translateY(${t * -10}px)`;
+    }
+    window.addEventListener('scroll', onScroll, { passive:true });
+    onScroll();
   </script>
 </body>
 </html>
