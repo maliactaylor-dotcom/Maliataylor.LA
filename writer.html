@@ -11,7 +11,7 @@
       --muted: rgba(255,255,255,.74);
       --hair2: rgba(255,255,255,.08);
       --accent:#023548;
-      --max: 980px; --r: 20px; --pill: 999px;
+      --max: 980px; --r: 20px;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       --display: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
@@ -21,12 +21,27 @@
     a:hover{opacity:.9}
     :focus-visible{ outline: 2px solid rgba(2,53,72,.95); outline-offset: 3px; border-radius: 12px; }
 
-    .wrap{max-width:var(--max);margin:0 auto;padding:46px 22px 90px;}
-    header{padding-bottom:18px;border-bottom:1px solid var(--hair2);margin-bottom:26px;position:sticky;top:0;background:rgba(0,0,0,.86);backdrop-filter: blur(10px);z-index:20;}
-    .top{
-      display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
-      padding-top:10px;
+    .wrap{max-width:var(--max);margin:0 auto;padding:42px 22px 90px;}
+
+    /* Sticky header BUT does not block clicks */
+    header{
+      position:sticky; top:0;
+      background: rgba(0,0,0,.86);
+      backdrop-filter: blur(10px);
+      z-index: 10;
+      border-bottom: 1px solid var(--hair2);
+      padding: 14px 0 14px;
     }
+
+    .top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      padding: 8px 0 10px;
+    }
+
     .miniNav{
       display:flex; gap:14px; flex-wrap:wrap; align-items:center;
     }
@@ -38,47 +53,69 @@
     }
     .miniNav a:hover{ color: rgba(255,255,255,.92); border-bottom-color: rgba(2,53,72,.85); }
 
+    .swipeHint{
+      font-size: 11px;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.46);
+      user-select:none;
+      pointer-events:none;
+    }
+
+    /* 6 page buttons */
+    .pager{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding-bottom: 10px;
+    }
+    @media (min-width: 860px){
+      .pager{ grid-template-columns: repeat(6, 1fr); }
+    }
+
+    .pill{
+      border: 1px solid rgba(2,53,72,.80);
+      background: rgba(2,53,72,.12);
+      border-radius: 18px;
+      padding: 14px 12px;
+      font-size: 11px;
+      letter-spacing:.26em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.92);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height: 52px;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+      position:relative;
+      z-index: 20; /* ensures above sticky background */
+    }
+    .pill:hover{ transform: translateY(-1px); border-color: rgba(2,53,72,.98); background: rgba(2,53,72,.16); box-shadow: 0 0 0 6px rgba(2,53,72,.10); }
+
+    .pill.active{
+      border-color: rgba(2,53,72,.98);
+      background: rgba(2,53,72,.18);
+      box-shadow: 0 0 0 6px rgba(2,53,72,.10);
+    }
+
     .h1{
-      margin: 10px 0 6px;
+      margin: 16px 0 8px;
       font-family: var(--display);
       font-weight: 650;
       letter-spacing: .08em;
       text-transform: uppercase;
-      font-size: clamp(52px, 8vw, 96px);
+      font-size: clamp(56px, 8vw, 104px);
       line-height: 1.01;
       text-shadow: 0 0 28px rgba(2,53,72,.22);
     }
     .sub{
-      margin: 0 0 10px;
+      margin: 0 0 14px;
       color: rgba(255,255,255,.78);
       font-size: 12px;
       letter-spacing: .30em;
       text-transform: uppercase;
     }
-
-    .pager{
-      margin-top: 12px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .pill{
-      border: 1px solid rgba(2,53,72,.80);
-      background: rgba(2,53,72,.12);
-      border-radius: 18px;
-      padding: 14px 14px;
-      font-size: 11px;
-      letter-spacing:.26em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.92);
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width: 130px;
-      -webkit-tap-highlight-color: transparent;
-      transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
-    }
-    .pill:hover{ transform: translateY(-1px); border-color: rgba(2,53,72,.98); background: rgba(2,53,72,.16); box-shadow: 0 0 0 6px rgba(2,53,72,.10); }
 
     .section{padding:46px 0;border-bottom:1px solid var(--hair2);}
     .head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px;}
@@ -95,14 +132,25 @@
       padding-top: 18px;
     }
 
-    /* PHOTO SLOT (optional) */
-    .heroImg{
+    /* One picture per page */
+    .heroMedia{
       margin-top: 22px;
-      width:100%;
-      max-width: 720px;
-      border-radius: 22px;
       border: 1px solid rgba(255,255,255,.10);
-      display:block;
+      border-radius: 24px;
+      overflow:hidden;
+      background: rgba(255,255,255,.03);
+      max-width: 860px;
+    }
+    .heroImg{ width:100%; height:auto; display:block; }
+    .ph{
+      aspect-ratio: 16/9;
+      display:flex; align-items:center; justify-content:center;
+      color: rgba(255,255,255,.52);
+      font-size: 12px;
+      letter-spacing:.26em;
+      text-transform: uppercase;
+      padding: 18px;
+      text-align:center;
     }
 
     .cards{display:grid;grid-template-columns:1fr;gap:12px;max-width:860px;}
@@ -124,22 +172,11 @@
     }
     .t{margin:0;font-size:18px;font-weight:600;letter-spacing:.04em;}
     .m{margin-top:10px;color:rgba(255,255,255,.70);line-height:1.6;font-size:14px;}
-
-    /* Swipe hint */
-    .swipeHint{
-      margin-top: 8px;
-      font-size: 11px;
-      letter-spacing: .26em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.46);
-    }
   </style>
 </head>
 <body>
-
-  <div class="wrap">
-
-    <header>
+  <header>
+    <div class="wrap">
       <div class="top">
         <div class="miniNav">
           <a href="index.html">Home</a>
@@ -147,19 +184,20 @@
         <div class="swipeHint">Swipe left/right</div>
       </div>
 
-      <!-- quick jump row: all six -->
-      <div class="pager" aria-label="Role pages">
-        <a class="pill" href="writer.html">Writer</a>
+      <div class="pager" aria-label="All pages">
+        <a class="pill active" href="writer.html">Writer</a>
         <a class="pill" href="producer.html">Producer</a>
         <a class="pill" href="intimacy.html">Intimacy</a>
         <a class="pill" href="mystic.html">Mystic</a>
         <a class="pill" href="healer.html">Healer</a>
         <a class="pill" href="rebel.html">Rebel</a>
       </div>
+    </div>
+  </header>
 
-      <h1 class="h1">Writer</h1>
-      <p class="sub">Malia Taylor</p>
-    </header>
+  <div class="wrap">
+    <h1 class="h1">Writer</h1>
+    <p class="sub">Malia Taylor</p>
 
     <section class="section">
       <div class="head">
@@ -168,13 +206,15 @@
       </div>
 
       <p class="statement">
-        <!-- Replace with the real writer paragraph -->
         A precise, elegant paragraph about voice, themes, and emotional truth. Clean. Editorial. No fluff.
       </p>
 
-      <!-- PHOTO SLOT (optional):
-      <img class="heroImg" src="images/hero-writer.jpg" alt="Writer image" />
-      -->
+      <div class="heroMedia" aria-label="Writer image">
+        <!-- Add image later:
+        <img class="heroImg" src="images/hero-writer.jpg" alt="Writer image" />
+        -->
+        <div class="ph">Add image: /images/hero-writer.jpg</div>
+      </div>
     </section>
 
     <section class="section" style="border-bottom:none;">
@@ -188,40 +228,33 @@
           <h3 class="t">Project Title</h3>
           <div class="m">Feature / Short / Series • Year • One clean line.</div>
         </article>
-        <article class="card">
-          <h3 class="t">Project Title</h3>
-          <div class="m">Feature / Short / Series • Year • One clean line.</div>
-        </article>
       </div>
     </section>
-
   </div>
 
   <script>
-    // Simple swipe navigation across the 6 role pages
+    // Swipe navigation (works even if buttons do)
     const order = ["writer.html","producer.html","intimacy.html","mystic.html","healer.html","rebel.html"];
     const current = "writer.html";
     const idx = order.indexOf(current);
 
-    let startX = null, startY = null;
-    window.addEventListener("touchstart", (e) => {
-      const t = e.touches[0];
-      startX = t.clientX; startY = t.clientY;
+    let sx=null, sy=null;
+    window.addEventListener("touchstart", (e)=>{
+      const t=e.touches[0]; sx=t.clientX; sy=t.clientY;
     }, {passive:true});
 
-    window.addEventListener("touchend", (e) => {
-      if(startX === null) return;
-      const t = e.changedTouches[0];
-      const dx = t.clientX - startX;
-      const dy = t.clientY - startY;
-      startX = null; startY = null;
+    window.addEventListener("touchend", (e)=>{
+      if(sx===null) return;
+      const t=e.changedTouches[0];
+      const dx=t.clientX - sx;
+      const dy=t.clientY - sy;
+      sx=null; sy=null;
 
-      // only horizontal swipes
       if(Math.abs(dx) < 60) return;
-      if(Math.abs(dy) > 80) return;
+      if(Math.abs(dy) > 90) return;
 
-      if(dx < 0 && idx < order.length - 1) window.location.href = order[idx + 1];
-      if(dx > 0 && idx > 0) window.location.href = order[idx - 1];
+      if(dx < 0 && idx < order.length - 1) window.location.href = order[idx+1];
+      if(dx > 0 && idx > 0) window.location.href = order[idx-1];
     }, {passive:true});
   </script>
 </body>
