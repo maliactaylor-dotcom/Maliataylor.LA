@@ -35,20 +35,26 @@
   position:sticky;
   top:0;
   z-index:50;
-  background: rgba(0,0,0,.82);
-  backdrop-filter: blur(8px);
+  background: rgba(0,0,0,.78);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--hair2);
-  padding: 8px 0 6px;
-     
+  padding: 18px 0 14px;
+  transition: padding .28s ease, background .28s ease;
 }
+
+header.compact{
+  padding: 6px 0 6px;
+  background: rgba(0,0,0,.92);
+}
+
   .top{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:12px;
+  gap:10px;
   flex-wrap:wrap;
-  padding: 2px 0 4px;
 }
+
     
     .miniNav{
       display:flex; gap:14px; flex-wrap:wrap; align-items:center;
@@ -114,6 +120,13 @@
       background: rgba(2,53,72,.18);
       box-shadow: 0 0 0 6px rgba(2,53,72,.10);
     }
+
+    header.compact .pill{
+  min-height:36px;
+  padding:8px 10px;
+  font-size:10px;
+}
+
 
     .h1{
       margin: 16px 0 8px;
@@ -303,5 +316,21 @@
       if(dx > 0 && idx > 0) window.location.href = order[idx-1];
     }, {passive:true});
   </script>
+  <script>
+const header = document.querySelector("header");
+let lastScroll = 0;
+
+window.addEventListener("scroll", () => {
+  const y = window.scrollY;
+
+  if (y > 40){
+    header.classList.add("compact");
+  } else {
+    header.classList.remove("compact");
+  }
+
+  lastScroll = y;
+});
+</script>
 </body>
 </html>
