@@ -1,0 +1,60 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><title>Malia Taylor</title><meta name="theme-color" content="#000000" />
+<style>
+:root{--bg:#000;--fg:#fff;--muted:rgba(255,255,255,.74);--hair:rgba(255,255,255,.12);--hair2:rgba(255,255,255,.08);--accent:#4da9d6;--max:1100px;--r:22px;--pill:999px;--sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;--display:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;}
+*{box-sizing:border-box} html,body{height:100%} body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+a{color:var(--fg);text-decoration:none} a:hover{opacity:.9}
+:focus-visible{outline:2px solid rgba(2,53,72,.95);outline-offset:3px;border-radius:12px;}
+.grain:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");mix-blend-mode:overlay;opacity:.06;}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 22px 96px;}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:120;background:rgba(0,0,0,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--hair2);opacity:0;transform:translateY(-100%);transition:opacity .24s ease,transform .24s ease}
+.topbar.is-visible{opacity:1;transform:translateY(0)}
+.topbarInner{max-width:var(--max);margin:0 auto;padding:10px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.logo{font-size:12px;letter-spacing:.3em;opacity:.76}
+.navLinks{display:flex;gap:10px;flex-wrap:wrap}
+.navPill,.primaryRole,.secondaryRole,.contactBtn{border:1px solid rgba(2,53,72,.85);background:rgba(2,53,72,.14);border-radius:18px;color:rgba(255,255,255,.92);display:inline-flex;align-items:center;justify-content:center;text-transform:uppercase;transition:transform .18s ease,background .18s ease,border-color .18s ease,box-shadow .18s ease;-webkit-tap-highlight-color:transparent;}
+.navPill{padding:9px 11px;font-size:10px;letter-spacing:.22em}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:76px 0 56px;position:relative;overflow:hidden;border-bottom:1px solid var(--hair2);}
+.hero:after{content:"";position:absolute;left:50%;top:-180px;width:1100px;height:1100px;transform:translateX(-50%);background:radial-gradient(circle at 50% 35%, rgba(2,53,72,.36), transparent 60%);pointer-events:none;opacity:.95;filter:saturate(120%);}
+.heroInner{width:100%;max-width:var(--max);position:relative;z-index:1;transition:opacity .22s ease,transform .22s ease;}
+.title{margin:0;font-family:var(--display);font-weight:650;letter-spacing:.08em;text-transform:uppercase;font-size:clamp(54px,8vw,98px);line-height:1.01;text-shadow:0 0 28px rgba(2,53,72,.22);}
+.roleGrid{margin-top:18px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;}
+.primaryRole{padding:18px 18px;font-size:13px;letter-spacing:.24em;min-height:62px;}
+.secondaryRow{margin-top:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:560px;opacity:.52}
+.secondaryRole{padding:8px 4px;font-size:10px;letter-spacing:.24em;min-height:auto;background:transparent;border:none;border-radius:0;color:rgba(255,255,255,.6)}
+.primaryRole:hover,.contactBtn:hover,.navPill:hover{transform:translateY(-1px);border-color:rgba(77,169,214,.98);background:rgba(77,169,214,.18);box-shadow:0 0 0 6px rgba(77,169,214,.10);} .secondaryRole:hover{opacity:.9;}
+.heroMedia{margin-top:22px;border:1px solid rgba(255,255,255,.10);border-radius:24px;overflow:hidden;background:rgba(255,255,255,.03);width:100%;max-width:var(--max);}
+.heroImg{width:100%;height:auto;display:block;}
+.row{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+.contactBtn{padding:16px 16px;font-size:12px;letter-spacing:.22em;}
+.section{padding:76px 0;border-bottom:1px solid var(--hair2);}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px;}
+.h2{margin:0;font-size:13px;letter-spacing:.30em;text-transform:uppercase;color:rgba(255,255,255,.86);}
+.bioGrid{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:start;}
+@media (max-width:900px){.bioGrid{grid-template-columns:1fr;}}
+@media (max-width:760px){.roleGrid,.secondaryRow{grid-template-columns:1fr;}.topbarInner{align-items:flex-start}}
+.bioText{margin:0;font-size:clamp(14px,1.35vw,18px);line-height:1.68;color:rgba(255,255,255,.88);max-width:60ch;border-top:1px solid var(--hair2);padding:12px 8px 0 0;white-space:pre-line;}
+.bioCard{border:1px solid var(--hair2);border-radius:22px;padding:18px;background:rgba(255,255,255,.02)}
+.bioPhoto{border:1px solid rgba(255,255,255,.10);border-radius:24px;overflow:hidden;background:rgba(255,255,255,.03);max-width:520px}
+.bioPhoto img{width:100%;height:auto;display:block;}
+.contactRow{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:14px;}
+.emailBtn{display:inline-flex;align-items:center;justify-content:center;border-radius:18px;border:1px solid rgba(2,53,72,.88);background:rgba(2,53,72,.16);padding:16px 16px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.92);transition:transform .18s ease,background .18s ease,border-color .18s ease;}
+.emailBtn:hover{transform:translateY(-1px);background:rgba(2,53,72,.20);border-color:rgba(2,53,72,.98);}
+.reveal{opacity:0;transform:translateY(10px);transition:opacity .7s ease, transform .7s ease;}
+.reveal.is-visible{opacity:1;transform:translateY(0);}
+</style></head><body class="grain">
+<div class="topbar" id="topbar"><div class="topbarInner"><a class="logo" href="index.html">MALIA TAYLOR</a><div class="navLinks"><a class="navPill" href="writer.html">Writer</a><a class="navPill" href="producer.html">Producer</a><a class="navPill" href="intimacy.html">Intimacy</a><a class="navPill" href="mystic.html">Mystic</a><a class="navPill" href="healer.html">Healer</a><a class="navPill" href="rebel.html">Rebel</a><a class="navPill" href="#contact">Contact</a></div></div></div>
+<section class="hero"><div class="wrap heroInner" id="heroFade"><h1 class="title">MALIA TAYLOR</h1><div class="roleGrid" aria-label="Primary roles"><a class="primaryRole" href="writer.html">Writer</a><a class="primaryRole" href="producer.html">Producer</a><a class="primaryRole" href="intimacy.html">Intimacy Coordinator</a></div><div class="heroMedia" aria-label="Hero image"><img class="heroImg" src="images/hero-home.jpg" alt="Malia Taylor"></div><div class="secondaryRow" aria-label="Additional identity pages"><a class="secondaryRole" href="mystic.html">Mystic</a><a class="secondaryRole" href="healer.html">Healer</a><a class="secondaryRole" href="rebel.html">Rebel</a></div><div class="row"><a class="contactBtn" href="#bio">Bio</a><a class="contactBtn" href="#contact">Contact</a></div></div></section>
+<div class="wrap"><section id="bio" class="section reveal"><div class="head"><h2 class="h2">Bio</h2></div><div class="bioGrid"><div class="bioCard"><p class="bioText">Malia took up screenwriting in 2012, as a single-mom raising 4 kids in Los Angeles. Her writing, very much like her life story, amplifies female voices with a focus on overcoming challenges that lead to personal transformation. Inspired by her great-grandfather, Stanner E.V. Taylor, one of the most prolific storyline writers of the silent film era, Malia's writing invokes the authentic human experience.
+
+Malia writes character-driven stories, amplifying female voices, queer identity, and caretaking — often using humor and intimacy to explore illness, grief, and belonging.
+
+Her mission is to Heal the world through the Power of Storytelling.
+
+Over the years she has honed her craft, completing multiple features and developing several other projects, while working full-time as a Massage Therapist & Healer. Now that her four adult children have launched their own artistic pursuits, Malia is shifting her energies to focus fully on filmmaking.
+
+In 2025, Malia produced a narrative short and a horror short film both currently entering the festival film circuit. She is slated to write, direct & produce her first short film in 2026, among other projects.</p></div><div class="bioPhoto" aria-label="Bio photo"><img src="images/bio-home.jpeg" alt="Malia Taylor portrait" /></div></div></section>
+<section id="contact" class="section reveal" style="border-bottom:none;"><div class="head"><h2 class="h2">Contact</h2></div><p class="bioText" style="max-width:60ch;margin:0;font-size:clamp(15px,1.5vw,19px);color:rgba(255,255,255,.84);border-top:none;padding-top:0;">For producing, writing, intimacy coordination, and aligned collaborations:</p><div class="contactRow"><a class="emailBtn" href="mailto:maliactaylor@gmail.com">maliactaylor@gmail.com</a></div></section></div>
+<script>
+const revealEls = Array.from(document.querySelectorAll('.reveal')); const io = new IntersectionObserver((entries) => { entries.forEach(ent => { if(ent.isIntersecting){ ent.target.classList.add('is-visible'); io.unobserve(ent.target); } }); }, { threshold: 0.12 }); revealEls.forEach(el => io.observe(el));
+const hero = document.getElementById('heroFade'); const topbar = document.getElementById('topbar'); function onScroll(){ const y = window.scrollY || 0; const fadeEnd = Math.min(window.innerHeight * 0.6, 520); const t = Math.max(0, Math.min(1, y / fadeEnd)); hero.style.opacity = String(1 - t); hero.style.transform = `translateY(${t * -10}px)`; if(y > 260){ topbar.classList.add('is-visible'); } else { topbar.classList.remove('is-visible'); }} window.addEventListener('scroll', onScroll, { passive:true }); onScroll();
+</script></body></html>
